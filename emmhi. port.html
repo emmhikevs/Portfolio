@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adesina Muiz | UI/UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --orange:#F97316;--orange-light:#FED7AA;--orange-dark:#EA580C;
+  --black:#0A0A0A;--dark:#111827;--dark2:#1F2937;
+  --white:#FFFFFF;--offwhite:#FAF9F7;
+  --gray:#6B7280;--light-gray:#F3F4F6;--border:#E5E7EB;
+  --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--offwhite);color:var(--dark);overflow-x:hidden}
+
+/* SHELL */
+.shell{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{width:72px;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:24px 0;position:fixed;top:0;left:0;height:100vh;z-index:100;gap:8px}
+.sidebar-logo{width:38px;height:38px;background:var(--orange);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;color:white;font-size:16px;margin-bottom:20px}
+.sidebar-nav{display:flex;flex-direction:column;gap:4px;align-items:center;flex:1}
+.sidebar-link{width:44px;height:44px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:var(--gray);font-size:9px;font-weight:500;transition:all .2s;cursor:pointer}
+.sidebar-link:hover,.sidebar-link.active{background:var(--orange-light);color:var(--orange-dark)}
+.sidebar-link svg{width:18px;height:18px}
+.sidebar-bottom{margin-top:auto}
+
+/* MAIN */
+.main{margin-left:72px;flex:1;display:flex;flex-direction:column}
+
+/* TOPNAV */
+.topnav{position:sticky;top:0;z-index:90;background:rgba(250,249,247,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px}
+.topnav-brand{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--dark)}
+.topnav-links{display:flex;list-style:none;gap:32px}
+.topnav-links a{text-decoration:none;color:var(--gray);font-size:14px;font-weight:500;transition:color .2s;position:relative;padding-bottom:3px}
+.topnav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--orange);transition:width .3s;border-radius:2px}
+.topnav-links a:hover{color:var(--dark)}
+.topnav-links a:hover::after,.topnav-links a.active::after{width:100%}
+.topnav-links a.active{color:var(--dark)}
+.topnav-right{display:flex;align-items:center;gap:12px}
+.btn-talk{background:var(--orange);color:white;border:none;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-body);display:flex;align-items:center;gap:6px;text-decoration:none}
+.btn-talk:hover{background:var(--orange-dark);transform:translateY(-1px);box-shadow:0 4px 20px rgba(249,115,22,.35)}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--dark);font-size:22px}
+
+/* BUTTONS */
+.btn-primary{background:var(--orange);color:white;padding:13px 26px;border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;transition:all .25s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(249,115,22,.4)}
+.btn-outline{background:transparent;color:var(--dark);padding:12px 26px;border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;border:2px solid var(--border);transition:all .25s}
+.btn-outline:hover{border-color:var(--dark);background:var(--dark);color:white}
+
+/* SECTION TAGS */
+.section-tag{display:inline-block;background:var(--orange-light);color:var(--orange-dark);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:50px;margin-bottom:16px}
+.section-title{font-family:var(--font-display);font-size:clamp(28px,4vw,44px);font-weight:800;line-height:1.1;color:var(--dark);margin-bottom:16px}
+
+/* ========== HERO ========== */
+#home{min-height:calc(100vh - 64px);display:flex;align-items:center;padding:60px 40px;position:relative;overflow:hidden;background:var(--white)}
+.hero-content{flex:1;max-width:560px;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--orange-light);color:var(--orange-dark);padding:6px 14px;border-radius:50px;font-size:12px;font-weight:600;margin-bottom:24px}
+.hero-badge::before{content:'';width:7px;height:7px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.hero-title{font-family:var(--font-display);font-size:clamp(38px,5vw,60px);font-weight:800;line-height:1.06;color:var(--dark);margin-bottom:16px}
+.hero-title span{color:var(--orange);display:block}
+.hero-sub{font-size:15px;color:var(--gray);line-height:1.7;margin-bottom:32px;max-width:400px}
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
+.hero-visual{flex:1;display:flex;justify-content:flex-end;align-items:center;z-index:2;position:relative}
+.hero-visual-wrap{position:relative;width:480px;height:480px}
+.hero-blob{position:absolute;width:420px;height:420px;background:var(--orange);border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;animation:morphBlob 8s ease-in-out infinite}
+@keyframes morphBlob{0%,100%{border-radius:60% 40% 70% 30%/50% 60% 40% 50%}25%{border-radius:40% 60% 30% 70%/60% 40% 60% 40%}50%{border-radius:50% 50% 40% 60%/40% 70% 30% 60%}75%{border-radius:70% 30% 60% 40%/50% 40% 70% 50%}}
+.hero-img-main{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:340px;height:420px;object-fit:cover;border-radius:20px;z-index:2}
+.hero-card{position:absolute;background:white;border-radius:16px;padding:12px 16px;box-shadow:0 8px 40px rgba(0,0,0,.12);z-index:3;display:flex;align-items:center;gap:10px}
+.hero-card-1{bottom:80px;left:-20px;animation:float1 3s ease-in-out infinite}
+.hero-card-2{top:60px;right:-10px;animation:float2 3.5s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.card-icon{width:34px;height:34px;background:var(--orange);border-radius:9px;display:flex;align-items:center;justify-content:center}
+.card-num{font-family:var(--font-display);font-weight:800;font-size:17px;color:var(--dark);line-height:1}
+.card-label{font-size:10px;color:var(--gray)}
+.stars{color:var(--orange);font-size:11px}
+
+/* ========== ABOUT ========== */
+#about{background:var(--offwhite);padding:80px 40px;display:flex;align-items:center;gap:60px}
+.about-left{flex:1}
+.about-body{font-size:14px;color:var(--gray);line-height:1.8;margin-bottom:28px}
+.about-stats{display:flex;gap:32px}
+.stat-num{font-family:var(--font-display);font-size:30px;font-weight:800;color:var(--orange)}
+.stat-label{font-size:11px;color:var(--gray);margin-top:2px}
+.about-right{flex:1;position:relative}
+.about-img-wrap{position:relative;display:inline-block}
+.about-img{width:380px;height:420px;object-fit:cover;border-radius:24px;display:block}
+.about-badge{position:absolute;top:24px;right:-20px;background:white;border-radius:16px;padding:14px 18px;box-shadow:0 8px 30px rgba(0,0,0,.1);text-align:center}
+.about-badge-icon{width:38px;height:38px;background:var(--orange-light);border-radius:11px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:18px}
+.about-badge-text{font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--dark)}
+.about-badge-sub{font-size:10px;color:var(--gray)}
+.about-tools{position:absolute;bottom:24px;left:-20px;background:white;border-radius:16px;padding:12px 16px;box-shadow:0 8px 30px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px}
+.tool-icons{display:flex;gap:6px}
+.tool-icon{width:30px;height:30px;border-radius:8px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:14px}
+
+/* ========== SERVICES ========== */
+#services{background:var(--white);padding:80px 40px}
+#services .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.service-card{background:var(--offwhite);border:1px solid var(--border);border-radius:20px;padding:28px;display:flex;gap:18px;align-items:flex-start;transition:all .3s;cursor:default;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;right:0;width:70px;height:70px;background:var(--orange);border-radius:0 20px 0 70px;opacity:.07;transition:all .3s}
+.service-card:hover{border-color:var(--orange-light);box-shadow:0 8px 40px rgba(249,115,22,.1);transform:translateY(-4px)}
+.service-card:hover::before{opacity:.13}
+.service-icon-wrap{width:48px;height:48px;background:var(--orange-light);border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s}
+.service-card:hover .service-icon-wrap{background:var(--orange)}
+.service-card:hover .service-icon-wrap svg{color:white}
+.service-icon-wrap svg{width:22px;height:22px;color:var(--orange-dark);transition:color .3s}
+.service-info h3{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--dark);margin-bottom:6px}
+.service-info p{font-size:12px;color:var(--gray);line-height:1.65}
+
+/* ========== PROJECTS ========== */
+#projects{background:var(--dark);padding:80px 40px}
+#projects .section-tag{background:rgba(249,115,22,.2);color:var(--orange)}
+#projects .section-title{color:var(--white)}
+#projects .section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px}
+.view-all{color:var(--orange);text-decoration:none;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;transition:gap .2s}
+.view-all:hover{gap:10px}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.project-card{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;transition:all .3s;cursor:pointer}
+.project-card:hover{transform:translateY(-6px);border-color:rgba(249,115,22,.3);box-shadow:0 16px 50px rgba(0,0,0,.4)}
+.project-img-wrap{overflow:hidden;position:relative}
+.project-img{width:100%;height:200px;object-fit:cover;display:block;transition:transform .4s}
+.project-card:hover .project-img{transform:scale(1.04)}
+.project-overlay{position:absolute;inset:0;background:rgba(249,115,22,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;opacity:0;transition:opacity .3s}
+.project-card:hover .project-overlay{opacity:1}
+.overlay-btn{background:white;color:var(--orange-dark);padding:9px 20px;border-radius:50px;font-weight:700;font-size:12px;text-decoration:none;transition:transform .2s}
+.overlay-btn:hover{transform:scale(1.04)}
+.overlay-btn-ghost{background:transparent;color:white;border:1.5px solid rgba(255,255,255,.7);padding:8px 20px;border-radius:50px;font-weight:600;font-size:12px;text-decoration:none;transition:all .2s}
+.overlay-btn-ghost:hover{background:rgba(255,255,255,.15)}
+.project-body{padding:20px 22px}
+.project-category{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:7px}
+.project-body h3{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--white);margin-bottom:6px}
+.project-body p{font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:16px}
+.project-actions{display:flex;gap:10px;align-items:center}
+.btn-case{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:7px 16px;border-radius:50px;font-size:11px;font-weight:600;text-decoration:none;transition:all .2s}
+.btn-case:hover{border-color:var(--orange);color:var(--orange)}
+.btn-live{display:inline-flex;align-items:center;gap:5px;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.3);color:var(--orange);padding:7px 16px;border-radius:50px;font-size:11px;font-weight:600;text-decoration:none;transition:all .2s}
+.btn-live:hover{background:var(--orange);color:white}
+
+/* ========== CASE STUDY MODAL ========== */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal{background:var(--white);border-radius:24px;width:100%;max-width:760px;max-height:90vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;background:var(--light-gray);border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--dark);transition:all .2s;z-index:2}
+.modal-close:hover{background:var(--dark);color:white}
+.modal-hero{width:100%;height:240px;object-fit:cover;border-radius:24px 24px 0 0;display:block}
+.modal-body{padding:32px}
+.modal-cat{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.modal-body h2{font-family:var(--font-display);font-weight:800;font-size:26px;color:var(--dark);margin-bottom:16px}
+.modal-stats{display:flex;gap:24px;margin-bottom:24px;padding:18px;background:var(--offwhite);border-radius:14px}
+.modal-stat-num{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--orange)}
+.modal-stat-label{font-size:11px;color:var(--gray);margin-top:2px}
+.modal-section-title{font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;margin-top:20px}
+.modal-body p{font-size:14px;color:var(--gray);line-height:1.75}
+.modal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.modal-tag{background:var(--orange-light);color:var(--orange-dark);padding:5px 12px;border-radius:50px;font-size:12px;font-weight:600}
+.modal-footer{display:flex;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border)}
+
+/* ========== TESTIMONIALS ========== */
+#testimonials{background:var(--dark);padding:80px 40px;border-top:1px solid rgba(255,255,255,.06)}
+#testimonials .section-tag{background:rgba(249,115,22,.2);color:var(--orange)}
+#testimonials .section-title{color:var(--white)}
+.testi-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;margin-top:44px}
+.testi-card{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:26px;transition:border-color .3s}
+.testi-card:hover{border-color:rgba(249,115,22,.3)}
+.testi-quote{font-size:14px;line-height:1.8;color:rgba(255,255,255,.75);margin-bottom:20px;font-style:italic}
+.testi-card.large .testi-quote{font-size:15px}
+.testi-author{display:flex;align-items:center;gap:11px}
+.testi-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--orange-light)}
+.testi-name{font-weight:600;font-size:13px;color:var(--white)}
+.testi-role{font-size:11px;color:rgba(255,255,255,.4)}
+.testi-stars{color:var(--orange);font-size:12px;margin-bottom:14px}
+
+/* ========== SKILLS ========== */
+#skills{background:var(--offwhite);padding:80px 40px}
+.skills-wrap{margin-top:44px}
+.skill-category{margin-bottom:28px}
+.skill-cat-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.skill-pills{display:flex;flex-wrap:wrap;gap:9px}
+.skill-pill{background:white;border:1px solid var(--border);padding:9px 16px;border-radius:50px;font-size:12px;font-weight:500;color:var(--dark);transition:all .2s;display:flex;align-items:center;gap:6px;cursor:default}
+.skill-pill:hover{background:var(--orange);color:white;border-color:var(--orange);transform:translateY(-2px)}
+
+/* ========== CONTACT ========== */
+#contact{background:var(--white);padding:80px 40px;display:flex;gap:60px;align-items:flex-start}
+.contact-left{flex:1}
+.contact-desc{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:32px}
+.contact-metrics{display:flex;flex-direction:column;gap:14px}
+.metric-row{background:var(--offwhite);border:1px solid var(--border);border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:14px}
+.metric-icon{width:42px;height:42px;background:var(--orange-light);border-radius:11px;display:flex;align-items:center;justify-content:center}
+.metric-icon svg{width:19px;height:19px;color:var(--orange-dark)}
+.metric-val{font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--dark)}
+.metric-lbl{font-size:11px;color:var(--gray)}
+.contact-right{flex:1}
+.contact-form{background:var(--offwhite);border:1px solid var(--border);border-radius:24px;padding:32px}
+.contact-form h3{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--dark);margin-bottom:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-group{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.form-group label{font-size:11px;font-weight:600;color:var(--dark);letter-spacing:.5px}
+.form-group input,.form-group textarea{padding:11px 14px;border:1px solid var(--border);border-radius:11px;font-size:13px;font-family:var(--font-body);color:var(--dark);background:white;transition:all .2s;outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,115,22,.1)}
+.form-group textarea{min-height:110px;resize:vertical}
+.form-submit{width:100%;background:var(--orange);color:white;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;transition:all .25s;font-family:var(--font-body)}
+.form-submit:hover{background:var(--orange-dark);box-shadow:0 8px 30px rgba(249,115,22,.4);transform:translateY(-1px)}
+
+/* ========== FOOTER ========== */
+footer{background:var(--dark);padding:36px 40px;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:var(--font-display);font-weight:800;font-size:19px;color:white}
+.footer-brand span{color:var(--orange)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.4)}
+.footer-socials{display:flex;gap:10px}
+.social-btn{width:38px;height:38px;border:1px solid rgba(255,255,255,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:700;transition:all .2s}
+.social-btn:hover{border-color:var(--orange);color:var(--orange);background:rgba(249,115,22,.1)}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:1024px){
+  .hero-visual{display:none}
+  #about{flex-direction:column}
+  .about-right{width:100%}
+  .about-img{width:100%;height:280px}
+  .projects-grid{grid-template-columns:1fr}
+  #contact{flex-direction:column}
+  .testi-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .sidebar{width:56px}
+  .sidebar-link span{display:none}
+  .main{margin-left:56px}
+  .topnav{padding:0 16px}
+  .topnav-links{display:none}
+  .menu-toggle{display:block}
+  section{padding:60px 20px}
+  #home,#about,#projects,#contact,#services,#skills,#testimonials{padding:60px 20px}
+  footer{padding:28px 20px;flex-direction:column;gap:18px;text-align:center}
+  .topnav-links.open{display:flex;flex-direction:column;position:fixed;top:64px;left:56px;right:0;background:white;padding:18px;border-bottom:1px solid var(--border);gap:18px;z-index:89}
+  .form-row{grid-template-columns:1fr}
+  .about-stats{gap:18px}
+  #services .section-header{flex-direction:column;align-items:flex-start;gap:10px}
+  .services-grid{grid-template-columns:1fr}
+}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(28px);transition:all .7s cubic-bezier(.22,1,.36,1)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- CASE STUDY MODAL -->
+<div class="modal-overlay" id="caseModal">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" id="modalClose">✕</button>
+    <img class="modal-hero" id="modalImg" src="" alt="">
+    <div class="modal-body">
+      <div class="modal-cat" id="modalCat"></div>
+      <h2 id="modalTitle"></h2>
+      <div class="modal-stats" id="modalStats"></div>
+      <div class="modal-section-title">Overview</div>
+      <p id="modalOverview"></p>
+      <div class="modal-section-title">Problem</div>
+      <p id="modalProblem"></p>
+      <div class="modal-section-title">Solution</div>
+      <p id="modalSolution"></p>
+      <div class="modal-section-title">Stack & Tools</div>
+      <div class="modal-tags" id="modalTags"></div>
+      <div class="modal-footer" id="modalFooter"></div>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">A</div>
+    <nav class="sidebar-nav">
+      <a href="#home" class="sidebar-link active" title="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="#projects" class="sidebar-link" title="Work">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <span>Work</span>
+      </a>
+      <a href="#about" class="sidebar-link" title="About">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>About</span>
+      </a>
+      <a href="#skills" class="sidebar-link" title="Skills">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <span>Skills</span>
+      </a>
+      <a href="#contact" class="sidebar-link" title="Contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>Contact</span>
+      </a>
+    </nav>
+    <div class="sidebar-bottom">
+      <a href="mailto:muiz@example.com" class="sidebar-link" title="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOPNAV -->
+    <header>
+      <nav class="topnav">
+        <div class="topnav-brand">Adesina Muiz</div>
+        <ul class="topnav-links" id="navLinks">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="topnav-right">
+          <a href="#contact" class="btn-talk">💬 Let's Talk</a>
+          <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home">
+      <div class="hero-content fade-up">
+        <div class="hero-badge">Available for work</div>
+        <h1 class="hero-title">
+          UI/UX &amp; App Designer<br>
+          <span>Clean Interfaces,</span>
+          Real Results
+        </h1>
+        <p class="hero-sub">I design mobile apps, web platforms, and dashboards that convert—turning complex problems into intuitive, user-loved experiences.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn-primary">View Projects →</a>
+          <a href="#contact" class="btn-outline">Hire Me</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-visual-wrap">
+          <div class="hero-blob"></div>
+          <img class="hero-img-main"
+               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop&crop=face"
+               alt="Adesina Muiz — UI/UX Designer">
+          <div class="hero-card hero-card-1">
+            <div class="card-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            </div>
+            <div>
+              <div class="card-num">5-Star</div>
+              <div class="stars">★★★★★</div>
+              <div class="card-label">App Store Rating</div>
+            </div>
+          </div>
+          <div class="hero-card hero-card-2">
+            <div class="card-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <div class="card-num">+25%</div>
+              <div class="card-label">Avg. Conversion Lift</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about-left fade-up">
+        <div class="section-tag">About Me</div>
+        <h2 class="section-title">Designing for Impact</h2>
+        <p class="about-body">UI/UX designer specialising in mobile apps, SaaS platforms, and web interfaces. I bridge user psychology with business goals—delivering designs that are both beautiful and measurably effective.</p>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-num">50+</div>
+            <div class="stat-label">Projects Shipped</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">+30%</div>
+            <div class="stat-label">Avg. Engagement Lift</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">5★</div>
+            <div class="stat-label">Client Rating</div>
+          </div>
+        </div>
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="#services" class="btn-primary">My Process →</a>
+          <a href="#contact" class="btn-outline">Work With Me</a>
+        </div>
+      </div>
+
+      <div class="about-right fade-up">
+        <div class="about-img-wrap">
+          <img class="about-img"
+               src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&h=800&fit=crop&crop=face"
+               alt="Adesina Muiz">
+          <div class="about-badge">
+            <div class="about-badge-icon">🎨</div>
+            <div class="about-badge-text">5-Star</div>
+            <div class="about-badge-sub">App Store Rating</div>
+          </div>
+          <div class="about-tools">
+            <div class="tool-icons">
+              <div class="tool-icon">🎭</div>
+              <div class="tool-icon" style="background:#4f46e5;">📐</div>
+              <div class="tool-icon" style="background:#0891b2;">📱</div>
+            </div>
+            <div>
+              <div style="font-size:12px;font-weight:600;color:var(--dark);">SaaS Redesign</div>
+              <div style="font-size:10px;color:var(--gray);">+25% conversion</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="section-header">
+        <div>
+          <div class="section-tag">What I Do</div>
+          <h2 class="section-title">Services</h2>
+        </div>
+        <a href="#contact" class="btn-primary">Work With Me →</a>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div class="service-info">
+            <h3>Mobile App Design</h3>
+            <p>Intuitive iOS & Android experiences users keep returning to—from flows to polished UI.</p>
+          </div>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="service-info">
+            <h3>Website UI Design</h3>
+            <p>Responsive, conversion-optimised web designs that elevate brand presence and drive action.</p>
+          </div>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="service-info">
+            <h3>Dashboard Design</h3>
+            <p>Complex data simplified into clear, actionable interfaces that empower smarter decisions.</p>
+          </div>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="service-info">
+            <h3>App Development</h3>
+            <p>From Figma to functional—HTML/CSS/JS implementation of pixel-perfect, responsive interfaces.</p>
+          </div>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="service-info">
+            <h3>UX Strategy</h3>
+            <p>Research-backed user journeys and testing protocols that validate every product decision.</p>
+          </div>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <div class="service-info">
+            <h3>Design Systems</h3>
+            <p>Scalable component libraries and tokens that keep large product teams moving fast and consistent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-header">
+        <div>
+          <div class="section-tag">Portfolio</div>
+          <h2 class="section-title">Selected Projects</h2>
+        </div>
+        <a href="#" class="view-all">View All →</a>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card fade-up">
+          <div class="project-img-wrap">
+            <img class="project-img"
+                 src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=700&h=400&fit=crop"
+                 alt="Fintech App UI">
+            <div class="project-overlay">
+              <a href="#" class="overlay-btn" onclick="openModal('fintech');return false;">View Case Study</a>
+              <a href="#" class="overlay-btn-ghost">Live Preview ↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-category">Mobile App · Fintech</div>
+            <h3>Fintech App UI</h3>
+            <p>Crypto trading & portfolio app with real-time data visualisations and a clean dark-mode system.</p>
+            <div class="project-actions">
+              <a href="#" class="btn-case" onclick="openModal('fintech');return false;">Case Study →</a>
+              <a href="#" class="btn-live">Live Preview ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card fade-up">
+          <div class="project-img-wrap">
+            <img class="project-img"
+                 src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&h=400&fit=crop"
+                 alt="E-commerce App">
+            <div class="project-overlay">
+              <a href="#" class="overlay-btn" onclick="openModal('ecommerce');return false;">View Case Study</a>
+              <a href="#" class="overlay-btn-ghost">Live Preview ↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-category">Mobile App · E-commerce</div>
+            <h3>E-commerce App UI</h3>
+            <p>Streamlined browsing and checkout flow engineered for conversion and delightful UX.</p>
+            <div class="project-actions">
+              <a href="#" class="btn-case" onclick="openModal('ecommerce');return false;">Case Study →</a>
+              <a href="#" class="btn-live">Live Preview ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card fade-up">
+          <div class="project-img-wrap">
+            <img class="project-img"
+                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&h=400&fit=crop"
+                 alt="AI SaaS Landing Page">
+            <div class="project-overlay">
+              <a href="#" class="overlay-btn" onclick="openModal('saas');return false;">View Case Study</a>
+              <a href="#" class="overlay-btn-ghost">Live Preview ↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-category">Web · SaaS</div>
+            <h3>AI SaaS Landing Page</h3>
+            <p>High-converting landing for an AI productivity tool with bold editorial layout and micro-animations.</p>
+            <div class="project-actions">
+              <a href="#" class="btn-case" onclick="openModal('saas');return false;">Case Study →</a>
+              <a href="#" class="btn-live">Live Preview ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card fade-up">
+          <div class="project-img-wrap">
+            <img class="project-img"
+                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&h=400&fit=crop"
+                 alt="Crypto Dashboard">
+            <div class="project-overlay">
+              <a href="#" class="overlay-btn" onclick="openModal('crypto');return false;">View Case Study</a>
+              <a href="#" class="overlay-btn-ghost">Live Preview ↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-category">Dashboard · Crypto</div>
+            <h3>Crypto Dashboard UI</h3>
+            <p>Complex order-book and trading data simplified into a clean, accessible dark-mode dashboard.</p>
+            <div class="project-actions">
+              <a href="#" class="btn-case" onclick="openModal('crypto');return false;">Case Study →</a>
+              <a href="#" class="btn-live">Live Preview ↗</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="section-tag">Client Reviews</div>
+      <h2 class="section-title">What Clients Say</h2>
+      <div class="testi-grid">
+        <div class="testi-card large fade-up">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Working with Adesina was seamless. Clean designs, ahead of schedule, and he genuinely understood how to turn our brief into something both beautiful and functional."</p>
+          <div class="testi-author">
+            <img class="testi-avatar"
+                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face"
+                 alt="Jane D.">
+            <div>
+              <div class="testi-name">Jane D.</div>
+              <div class="testi-role">CEO, CryptoStart</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card fade-up">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Professional, fast, and detail-oriented. The app UI exceeded our expectations."</p>
+          <div class="testi-author">
+            <img class="testi-avatar"
+                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+                 alt="Benny V.">
+            <div>
+              <div class="testi-name">Benny V.</div>
+              <div class="testi-role">Founder, PayFlow</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card fade-up">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Conversion rate jumped 25% after the redesign. Best design investment we've made."</p>
+          <div class="testi-author">
+            <img class="testi-avatar"
+                 src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face"
+                 alt="Mark T.">
+            <div>
+              <div class="testi-name">Mark T.</div>
+              <div class="testi-role">CTO, LaunchPad</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-tag">Expertise</div>
+      <h2 class="section-title">Skills & Tools</h2>
+      <div class="skills-wrap">
+        <div class="skill-category fade-up">
+          <div class="skill-cat-label">Design</div>
+          <div class="skill-pills">
+            <span class="skill-pill">🎨 UI Design</span>
+            <span class="skill-pill">🔄 UX Strategy</span>
+            <span class="skill-pill">📱 Mobile App Design</span>
+            <span class="skill-pill">💻 Dashboard Design</span>
+            <span class="skill-pill">🗂 Design Systems</span>
+            <span class="skill-pill">🧪 Prototyping & Testing</span>
+          </div>
+        </div>
+        <div class="skill-category fade-up">
+          <div class="skill-cat-label">Tools</div>
+          <div class="skill-pills">
+            <span class="skill-pill">🎭 Figma</span>
+            <span class="skill-pill">📐 Adobe XD</span>
+            <span class="skill-pill">🎬 After Effects</span>
+            <span class="skill-pill">🖼 Photoshop</span>
+            <span class="skill-pill">✍️ Illustrator</span>
+            <span class="skill-pill">🔗 Zeplin</span>
+          </div>
+        </div>
+        <div class="skill-category fade-up">
+          <div class="skill-cat-label">Development</div>
+          <div class="skill-pills">
+            <span class="skill-pill">⚡ HTML5</span>
+            <span class="skill-pill">🎨 CSS3 / Tailwind</span>
+            <span class="skill-pill">📜 JavaScript</span>
+            <span class="skill-pill">⚛️ React (basics)</span>
+            <span class="skill-pill">📲 Responsive Design</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-left fade-up">
+        <div class="section-tag">Get In Touch</div>
+        <h2 class="section-title">Let's Build<br>Something Great</h2>
+        <p class="contact-desc">Have a project in mind? I'm available for freelance work and collaborations. Let's talk.</p>
+        <div class="contact-metrics">
+          <div class="metric-row">
+            <div class="metric-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <div class="metric-val">+25%</div>
+              <div class="metric-lbl">Average Conversion Boost</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            </div>
+            <div>
+              <div class="metric-val">5-Star</div>
+              <div class="metric-lbl">Consistent Client Rating</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="metric-val">&lt; 48h</div>
+              <div class="metric-lbl">Average Response Time</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-right fade-up">
+        <div class="contact-form">
+          <h3>Send a Message</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" placeholder="John Doe">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="john@example.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Project Type</label>
+            <input type="text" placeholder="e.g. Mobile App, Website, Dashboard…">
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Tell me about your project and timeline…"></textarea>
+          </div>
+          <button class="form-submit" id="sendBtn">Send Message 🚀</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-brand">Adesina <span>Muiz</span></div>
+      <p class="footer-copy">© 2026 Muiz · All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" title="X / Twitter">𝕏</a>
+        <a href="#" class="social-btn" title="LinkedIn">in</a>
+        <a href="#" class="social-btn" title="GitHub">gh</a>
+        <a href="#" class="social-btn" title="Behance">be</a>
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+/* ===== CASE STUDY DATA ===== */
+const projects = {
+  fintech: {
+    cat: 'Mobile App · Fintech',
+    title: 'Fintech App UI',
+    img: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=760&h=360&fit=crop',
+    stats: [{num:'↑ 34%',label:'Session Duration'},{num:'4.9★',label:'App Store Rating'},{num:'12 wks',label:'Delivery Time'}],
+    overview: 'A crypto trading and portfolio management app designed for both novice investors and power traders. The challenge was presenting real-time volatile data in a way that is readable and actionable at a glance.',
+    problem: 'The existing app had a cluttered interface with no clear information hierarchy, causing users to abandon transactions mid-flow. Task completion rate sat at 61%.',
+    solution: 'Redesigned the information architecture from scratch, introduced a modular card system for portfolio data, and created a simplified transaction flow reduced to 3 steps. Task completion improved to 89%.',
+    tags: ['Figma','Dark Mode System','iOS & Android','Micro-animations','Usability Testing'],
+    liveUrl: '#'
+  },
+  ecommerce: {
+    cat: 'Mobile App · E-commerce',
+    title: 'E-commerce App UI',
+    img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=760&h=360&fit=crop',
+    stats: [{num:'↑ 28%',label:'Checkout Conversion'},{num:'−40%',label:'Cart Abandonment'},{num:'8 wks',label:'Delivery Time'}],
+    overview: 'A fashion e-commerce app targeting millennial shoppers who expect a premium, frictionless mobile shopping experience comparable to Zara or ASOS.',
+    problem: 'High cart abandonment (72%) driven by a complex, multi-page checkout and poor product discovery. Mobile-first users were dropping off at the payment screen.',
+    solution: 'Introduced a single-screen checkout with Apple Pay/Google Pay integration, rebuilt product filters with live preview, and added a wishlist-to-cart gesture shortcut. Abandonment dropped to 43%.',
+    tags: ['Figma','Prototyping','iOS Native Patterns','A/B Testing','Design System'],
+    liveUrl: '#'
+  },
+  saas: {
+    cat: 'Web · SaaS',
+    title: 'AI SaaS Landing Page',
+    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=760&h=360&fit=crop',
+    stats: [{num:'↑ 25%',label:'Trial Sign-ups'},{num:'2.1s',label:'Avg. Scroll Depth'},{num:'6 wks',label:'Delivery Time'}],
+    overview: 'High-converting landing page for an AI productivity SaaS targeting knowledge workers. Needed to communicate complex AI capabilities quickly to a sceptical, technically literate audience.',
+    problem: 'Previous landing page had a 2.3% trial conversion rate. Messaging was too technical, CTAs were buried, and the page lacked social proof above the fold.',
+    solution: 'Rebuilt the page around a benefit-first narrative, moved social proof and key metrics into the hero, and simplified the CTA to a single action. Trial conversion reached 4.1%.',
+    tags: ['Figma','HTML/CSS','JavaScript','CRO','Motion Design'],
+    liveUrl: '#'
+  },
+  crypto: {
+    cat: 'Dashboard · Crypto',
+    title: 'Crypto Dashboard UI',
+    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=760&h=360&fit=crop',
+    stats: [{num:'↑ 41%',label:'Daily Active Users'},{num:'−30%',label:'Support Tickets'},{num:'10 wks',label:'Delivery Time'}],
+    overview: 'A professional trading dashboard for a crypto exchange handling $2M+ in daily volume. Target users were experienced traders who needed speed and density without sacrificing readability.',
+    problem: 'The old dashboard was overwhelming—14 panels visible by default with no customisation. New users churned within 48 hours due to cognitive overload.',
+    solution: 'Designed a modular, drag-and-drop panel system with sensible defaults for new vs. advanced users. Introduced a dark-mode-first design system with colour-coded data states. Churn at 48h dropped 37%.',
+    tags: ['Figma','Design System','Dark Mode','Data Visualisation','User Research'],
+    liveUrl: '#'
+  }
+};
+
+function openModal(key) {
+  const p = projects[key];
+  if (!p) return;
+  document.getElementById('modalImg').src = p.img;
+  document.getElementById('modalImg').alt = p.title;
+  document.getElementById('modalCat').textContent = p.cat;
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalOverview').textContent = p.overview;
+  document.getElementById('modalProblem').textContent = p.problem;
+  document.getElementById('modalSolution').textContent = p.solution;
+
+  const stats = p.stats.map(s => `<div><div class="modal-stat-num">${s.num}</div><div class="modal-stat-label">${s.label}</div></div>`).join('');
+  document.getElementById('modalStats').innerHTML = stats;
+
+  const tags = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+  document.getElementById('modalTags').innerHTML = tags;
+
+  document.getElementById('modalFooter').innerHTML =
+    `<a href="${p.liveUrl}" class="btn-primary" style="font-size:13px;padding:11px 22px;">View Live Project ↗</a>
+     <button onclick="closeModal()" class="btn-outline" style="font-size:13px;padding:10px 22px;">Close</button>`;
+
+  document.getElementById('caseModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('caseModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('caseModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ===== MOBILE MENU ===== */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+document.querySelectorAll('.topnav-links a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+/* ===== ACTIVE LINK ===== */
+const sections = document.querySelectorAll('section[id]');
+const navItems = document.querySelectorAll('.topnav-links a');
+const sideItems = document.querySelectorAll('.sidebar-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) current = sec.getAttribute('id'); });
+  navItems.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + current) a.classList.add('active'); });
+  sideItems.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + current) a.classList.add('active'); });
+});
+
+/* ===== SCROLL ANIMATION ===== */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+/* ===== CONTACT FORM ===== */
+document.getElementById('sendBtn').addEventListener('click', () => {
+  alert("Message sent! I'll get back to you within 48 hours 🙌");
+});
+
+/* ===== SMOOTH SCROLL ===== */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
