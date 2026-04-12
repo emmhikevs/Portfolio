@@ -3,894 +3,1283 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adesina Muiz | UI/UX Designer</title>
+<title>Adesina Muiz | UI/UX Designer & App Developer</title>
+<meta name="description" content="Adesina Muiz — UI/UX Designer specialising in mobile apps, SaaS platforms, and high-converting web interfaces. Based in Lagos, Nigeria. Available for freelance work.">
+<meta name="author" content="Adesina Muiz">
+<meta name="keywords" content="UI UX Designer, Mobile App Designer, Figma, Product Design, Nigeria, Freelance Designer">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Adesina Muiz | UI/UX Designer">
+<meta property="og:description" content="Clean interfaces and conversion-focused digital experiences.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://adesina-muiz.com">
+<meta property="og:image" content="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=630&fit=crop&crop=face">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Adesina Muiz | UI/UX Designer">
+<meta name="twitter:description" content="Clean interfaces and conversion-focused digital experiences.">
+
+<!-- Favicon (inline SVG as data URI — no external dependency) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23F97316'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='Arial Black,sans-serif' font-weight='900' font-size='18'>A</text></svg>">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
 
 <style>
+/* ── RESET ── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
 :root{
-  --orange:#F97316;--orange-light:#FED7AA;--orange-dark:#EA580C;
-  --black:#0A0A0A;--dark:#111827;--dark2:#1F2937;
-  --white:#FFFFFF;--offwhite:#FAF9F7;
-  --gray:#6B7280;--light-gray:#F3F4F6;--border:#E5E7EB;
-  --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;
+  --orange:#F97316;
+  --orange-light:#FED7AA;
+  --orange-dark:#EA580C;
+  --orange-glow:rgba(249,115,22,.35);
+  --dark:#111827;
+  --dark2:#1F2937;
+  --white:#FFFFFF;
+  --offwhite:#FAF9F7;
+  --gray:#6B7280;
+  --gray-light:#9CA3AF;
+  --border:#E5E7EB;
+  --success-bg:#D1FAE5;
+  --success-border:#6EE7B7;
+  --success-text:#065F46;
+  --error-bg:#FEE2E2;
+  --error-border:#FCA5A5;
+  --error-text:#991B1B;
+  --fd:'Syne',sans-serif;
+  --fb:'DM Sans',sans-serif;
+  --radius-sm:8px;
+  --radius-md:12px;
+  --radius-lg:20px;
+  --radius-xl:24px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.06);
+  --shadow-md:0 8px 32px rgba(0,0,0,.10);
+  --shadow-orange:0 8px 30px rgba(249,115,22,.35);
 }
+
 html{scroll-behavior:smooth}
-body{font-family:var(--font-body);background:var(--offwhite);color:var(--dark);overflow-x:hidden}
+body{font-family:var(--fb);background:var(--offwhite);color:var(--dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-/* SHELL */
-.shell{display:flex;min-height:100vh}
+/* ── PAGE SYSTEM ── */
+.page{display:none;min-height:100vh}
+.page.active{display:block}
 
-/* SIDEBAR */
-.sidebar{width:72px;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:24px 0;position:fixed;top:0;left:0;height:100vh;z-index:100;gap:8px}
-.sidebar-logo{width:38px;height:38px;background:var(--orange);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;color:white;font-size:16px;margin-bottom:20px}
+/* ── LAYOUT ── */
+.shell{display:flex}
+.sidebar{
+  width:72px;background:var(--white);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;padding:24px 0;
+  position:fixed;top:0;left:0;height:100vh;z-index:300;gap:8px;
+}
+.sidebar-logo{
+  width:38px;height:38px;background:var(--orange);border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fd);font-weight:900;color:white;font-size:17px;
+  margin-bottom:20px;transition:background .2s;
+}
+.sidebar-logo:hover{background:var(--orange-dark)}
 .sidebar-nav{display:flex;flex-direction:column;gap:4px;align-items:center;flex:1}
-.sidebar-link{width:44px;height:44px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;color:var(--gray);font-size:9px;font-weight:500;transition:all .2s;cursor:pointer}
+.sidebar-link{
+  width:44px;height:44px;border-radius:var(--radius-sm);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  color:var(--gray);font-size:9px;font-weight:500;transition:all .2s;
+  padding:0;
+}
+.sidebar-link svg{width:18px;height:18px;flex-shrink:0}
 .sidebar-link:hover,.sidebar-link.active{background:var(--orange-light);color:var(--orange-dark)}
-.sidebar-link svg{width:18px;height:18px}
-.sidebar-bottom{margin-top:auto}
+.sidebar-link span{display:block;font-size:8.5px}
+.sidebar-bottom{margin-top:auto;padding-bottom:8px}
+.main{margin-left:72px;flex:1;display:flex;flex-direction:column;min-width:0}
 
-/* MAIN */
-.main{margin-left:72px;flex:1;display:flex;flex-direction:column}
-
-/* TOPNAV */
-.topnav{position:sticky;top:0;z-index:90;background:rgba(250,249,247,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px}
-.topnav-brand{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--dark)}
-.topnav-links{display:flex;list-style:none;gap:32px}
-.topnav-links a{text-decoration:none;color:var(--gray);font-size:14px;font-weight:500;transition:color .2s;position:relative;padding-bottom:3px}
-.topnav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--orange);transition:width .3s;border-radius:2px}
-.topnav-links a:hover{color:var(--dark)}
-.topnav-links a:hover::after,.topnav-links a.active::after{width:100%}
-.topnav-links a.active{color:var(--dark)}
+/* ── TOPNAV ── */
+.topnav{
+  position:sticky;top:0;z-index:200;height:64px;
+  background:rgba(250,249,247,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 40px;
+}
+.topnav-brand{font-family:var(--fd);font-weight:700;font-size:18px;color:var(--dark)}
+.topnav-links{display:flex;list-style:none;gap:28px}
+.topnav-links li a{
+  color:var(--gray);font-size:13.5px;font-weight:500;transition:color .2s;
+  position:relative;padding-bottom:4px;
+}
+.topnav-links li a::after{
+  content:'';position:absolute;bottom:0;left:0;width:0;height:2px;
+  background:var(--orange);transition:width .28s;border-radius:2px;
+}
+.topnav-links li a:hover,.topnav-links li a.active{color:var(--dark)}
+.topnav-links li a:hover::after,.topnav-links li a.active::after{width:100%}
 .topnav-right{display:flex;align-items:center;gap:12px}
-.btn-talk{background:var(--orange);color:white;border:none;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-body);display:flex;align-items:center;gap:6px;text-decoration:none}
-.btn-talk:hover{background:var(--orange-dark);transform:translateY(-1px);box-shadow:0 4px 20px rgba(249,115,22,.35)}
-.menu-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--dark);font-size:22px}
+.btn-talk{
+  background:var(--orange);color:white;padding:9px 20px;border-radius:50px;
+  font-size:13px;font-weight:600;transition:all .2s;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.btn-talk:hover{background:var(--orange-dark);transform:translateY(-1px);box-shadow:var(--shadow-orange)}
+.menu-toggle{display:none;color:var(--dark);font-size:22px;padding:4px}
 
-/* BUTTONS */
-.btn-primary{background:var(--orange);color:white;padding:13px 26px;border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;transition:all .25s;display:inline-flex;align-items:center;gap:8px}
-.btn-primary:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(249,115,22,.4)}
-.btn-outline{background:transparent;color:var(--dark);padding:12px 26px;border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;border:2px solid var(--border);transition:all .25s}
+/* ── SHARED BUTTONS ── */
+.btn-primary{
+  background:var(--orange);color:white;padding:12px 26px;border-radius:50px;
+  font-weight:600;font-size:14px;transition:all .25s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:var(--shadow-orange)}
+.btn-outline{
+  background:transparent;color:var(--dark);padding:11px 26px;border-radius:50px;
+  font-weight:600;font-size:14px;border:2px solid var(--border);transition:all .25s;
+  display:inline-flex;align-items:center;gap:8px;
+}
 .btn-outline:hover{border-color:var(--dark);background:var(--dark);color:white}
 
-/* SECTION TAGS */
-.section-tag{display:inline-block;background:var(--orange-light);color:var(--orange-dark);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:50px;margin-bottom:16px}
-.section-title{font-family:var(--font-display);font-size:clamp(28px,4vw,44px);font-weight:800;line-height:1.1;color:var(--dark);margin-bottom:16px}
+/* ── SHARED LABELS ── */
+.section-tag{
+  display:inline-block;background:var(--orange-light);color:var(--orange-dark);
+  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:5px 13px;border-radius:50px;margin-bottom:14px;
+}
+.section-title{
+  font-family:var(--fd);font-size:clamp(26px,4vw,44px);font-weight:800;
+  line-height:1.1;color:var(--dark);margin-bottom:14px;
+}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px;gap:16px}
 
-/* ========== HERO ========== */
-#home{min-height:calc(100vh - 64px);display:flex;align-items:center;padding:60px 40px;position:relative;overflow:hidden;background:var(--white)}
+/* ── ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ════════════════════════════════════
+   HERO
+════════════════════════════════════ */
+#sec-home{
+  min-height:calc(100vh - 64px);background:var(--white);
+  display:flex;align-items:center;padding:60px 40px;gap:40px;overflow:hidden;
+}
 .hero-content{flex:1;max-width:560px;z-index:2}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--orange-light);color:var(--orange-dark);padding:6px 14px;border-radius:50px;font-size:12px;font-weight:600;margin-bottom:24px}
-.hero-badge::before{content:'';width:7px;height:7px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
-.hero-title{font-family:var(--font-display);font-size:clamp(38px,5vw,60px);font-weight:800;line-height:1.06;color:var(--dark);margin-bottom:16px}
-.hero-title span{color:var(--orange);display:block}
-.hero-sub{font-size:15px;color:var(--gray);line-height:1.7;margin-bottom:32px;max-width:400px}
-.hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
-.hero-visual{flex:1;display:flex;justify-content:flex-end;align-items:center;z-index:2;position:relative}
-.hero-visual-wrap{position:relative;width:480px;height:480px}
-.hero-blob{position:absolute;width:420px;height:420px;background:var(--orange);border-radius:60% 40% 70% 30% / 50% 60% 40% 50%;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;animation:morphBlob 8s ease-in-out infinite}
-@keyframes morphBlob{0%,100%{border-radius:60% 40% 70% 30%/50% 60% 40% 50%}25%{border-radius:40% 60% 30% 70%/60% 40% 60% 40%}50%{border-radius:50% 50% 40% 60%/40% 70% 30% 60%}75%{border-radius:70% 30% 60% 40%/50% 40% 70% 50%}}
-.hero-img-main{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:340px;height:420px;object-fit:cover;border-radius:20px;z-index:2}
-.hero-card{position:absolute;background:white;border-radius:16px;padding:12px 16px;box-shadow:0 8px 40px rgba(0,0,0,.12);z-index:3;display:flex;align-items:center;gap:10px}
-.hero-card-1{bottom:80px;left:-20px;animation:float1 3s ease-in-out infinite}
-.hero-card-2{top:60px;right:-10px;animation:float2 3.5s ease-in-out infinite}
-@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
-.card-icon{width:34px;height:34px;background:var(--orange);border-radius:9px;display:flex;align-items:center;justify-content:center}
-.card-num{font-family:var(--font-display);font-weight:800;font-size:17px;color:var(--dark);line-height:1}
-.card-label{font-size:10px;color:var(--gray)}
-.stars{color:var(--orange);font-size:11px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;background:var(--orange-light);
+  color:var(--orange-dark);padding:7px 15px;border-radius:50px;font-size:12px;font-weight:600;
+  margin-bottom:24px;
+}
+.hero-badge::before{
+  content:'';width:7px;height:7px;background:var(--orange);border-radius:50%;
+  animation:blink 2s ease-in-out infinite;flex-shrink:0;
+}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+.hero-title{
+  font-family:var(--fd);font-size:clamp(36px,5vw,60px);font-weight:800;
+  line-height:1.06;color:var(--dark);margin-bottom:18px;
+}
+.hero-title .accent{color:var(--orange);display:block}
+.hero-sub{font-size:15px;color:var(--gray);line-height:1.75;margin-bottom:34px;max-width:420px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
 
-/* ========== ABOUT ========== */
-#about{background:var(--offwhite);padding:80px 40px;display:flex;align-items:center;gap:60px}
+/* hero visual */
+.hero-visual{flex:1;display:flex;justify-content:flex-end;align-items:center;position:relative}
+.hero-wrap{position:relative;width:460px;height:460px}
+.hero-blob{
+  position:absolute;width:400px;height:400px;background:var(--orange);
+  border-radius:60% 40% 70% 30%/50% 60% 40% 50%;top:50%;left:50%;
+  transform:translate(-50%,-50%);animation:blob 8s ease-in-out infinite;
+}
+@keyframes blob{
+  0%,100%{border-radius:60% 40% 70% 30%/50% 60% 40% 50%}
+  25%{border-radius:40% 60% 30% 70%/60% 40% 60% 40%}
+  50%{border-radius:50% 50% 40% 60%/40% 70% 30% 60%}
+  75%{border-radius:70% 30% 60% 40%/50% 40% 70% 50%}
+}
+.hero-photo{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:320px;height:400px;object-fit:cover;border-radius:18px;z-index:2;
+  /* fallback colour shown while image loads */
+  background:#f3d5b5;
+}
+.float-card{
+  position:absolute;background:white;border-radius:14px;
+  padding:11px 15px;box-shadow:var(--shadow-md);z-index:3;
+  display:flex;align-items:center;gap:10px;
+}
+.fc1{bottom:70px;left:-10px;animation:f1 3s ease-in-out infinite}
+.fc2{top:50px;right:0;animation:f2 3.5s ease-in-out infinite}
+@keyframes f1{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes f2{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+.fc-icon{width:33px;height:33px;background:var(--orange);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fc-num{font-family:var(--fd);font-weight:800;font-size:16px;color:var(--dark);line-height:1}
+.fc-lbl{font-size:10px;color:var(--gray);margin-top:1px}
+.fc-stars{color:var(--orange);font-size:11px;letter-spacing:1px}
+
+/* ════════════════════════════════════
+   ABOUT
+════════════════════════════════════ */
+#sec-about{background:var(--offwhite);padding:80px 40px;display:flex;align-items:center;gap:60px}
 .about-left{flex:1}
-.about-body{font-size:14px;color:var(--gray);line-height:1.8;margin-bottom:28px}
-.about-stats{display:flex;gap:32px}
-.stat-num{font-family:var(--font-display);font-size:30px;font-weight:800;color:var(--orange)}
-.stat-label{font-size:11px;color:var(--gray);margin-top:2px}
-.about-right{flex:1;position:relative}
+.about-body{font-size:14px;color:var(--gray);line-height:1.82;margin-bottom:28px}
+.about-stats{display:flex;gap:28px;flex-wrap:wrap}
+.stat-val{font-family:var(--fd);font-size:28px;font-weight:800;color:var(--orange)}
+.stat-lbl{font-size:11px;color:var(--gray);margin-top:2px}
+.about-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.about-right{flex:1;position:relative;display:flex;justify-content:center}
 .about-img-wrap{position:relative;display:inline-block}
-.about-img{width:380px;height:420px;object-fit:cover;border-radius:24px;display:block}
-.about-badge{position:absolute;top:24px;right:-20px;background:white;border-radius:16px;padding:14px 18px;box-shadow:0 8px 30px rgba(0,0,0,.1);text-align:center}
-.about-badge-icon{width:38px;height:38px;background:var(--orange-light);border-radius:11px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:18px}
-.about-badge-text{font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--dark)}
-.about-badge-sub{font-size:10px;color:var(--gray)}
-.about-tools{position:absolute;bottom:24px;left:-20px;background:white;border-radius:16px;padding:12px 16px;box-shadow:0 8px 30px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px}
-.tool-icons{display:flex;gap:6px}
-.tool-icon{width:30px;height:30px;border-radius:8px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:14px}
+.about-img{
+  width:360px;height:420px;object-fit:cover;border-radius:var(--radius-xl);
+  background:#e8d5c4;/* fallback */
+}
+.a-badge{
+  position:absolute;top:20px;right:-18px;background:white;border-radius:14px;
+  padding:14px 18px;box-shadow:var(--shadow-md);text-align:center;
+}
+.a-badge-icon{width:36px;height:36px;background:var(--orange-light);border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:18px}
+.a-badge-val{font-family:var(--fd);font-weight:700;font-size:14px;color:var(--dark)}
+.a-badge-lbl{font-size:10px;color:var(--gray)}
+.a-tools{
+  position:absolute;bottom:20px;left:-16px;background:white;border-radius:14px;
+  padding:11px 15px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:10px;
+}
+.tool-dots{display:flex;gap:5px}
+.tool-dot{width:28px;height:28px;border-radius:7px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:13px}
 
-/* ========== SERVICES ========== */
-#services{background:var(--white);padding:80px 40px}
-#services .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.service-card{background:var(--offwhite);border:1px solid var(--border);border-radius:20px;padding:28px;display:flex;gap:18px;align-items:flex-start;transition:all .3s;cursor:default;position:relative;overflow:hidden}
-.service-card::before{content:'';position:absolute;top:0;right:0;width:70px;height:70px;background:var(--orange);border-radius:0 20px 0 70px;opacity:.07;transition:all .3s}
-.service-card:hover{border-color:var(--orange-light);box-shadow:0 8px 40px rgba(249,115,22,.1);transform:translateY(-4px)}
-.service-card:hover::before{opacity:.13}
-.service-icon-wrap{width:48px;height:48px;background:var(--orange-light);border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s}
-.service-card:hover .service-icon-wrap{background:var(--orange)}
-.service-card:hover .service-icon-wrap svg{color:white}
-.service-icon-wrap svg{width:22px;height:22px;color:var(--orange-dark);transition:color .3s}
-.service-info h3{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--dark);margin-bottom:6px}
-.service-info p{font-size:12px;color:var(--gray);line-height:1.65}
+/* ════════════════════════════════════
+   SERVICES
+════════════════════════════════════ */
+#sec-services{background:var(--white);padding:80px 40px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.svc-card{
+  background:var(--offwhite);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:28px;display:flex;gap:16px;align-items:flex-start;transition:all .3s;
+  position:relative;overflow:hidden;
+}
+.svc-card::after{
+  content:'';position:absolute;top:0;right:0;width:64px;height:64px;
+  background:var(--orange);border-radius:0 var(--radius-lg) 0 60px;opacity:.07;transition:opacity .3s;
+}
+.svc-card:hover{border-color:var(--orange-light);box-shadow:0 8px 36px rgba(249,115,22,.12);transform:translateY(-4px)}
+.svc-card:hover::after{opacity:.15}
+.svc-icon{
+  width:46px;height:46px;background:var(--orange-light);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;
+}
+.svc-card:hover .svc-icon{background:var(--orange)}
+.svc-icon svg{width:21px;height:21px;color:var(--orange-dark);transition:color .3s}
+.svc-card:hover .svc-icon svg{color:white}
+.svc-info h3{font-family:var(--fd);font-weight:700;font-size:15px;color:var(--dark);margin-bottom:6px}
+.svc-info p{font-size:12px;color:var(--gray);line-height:1.65}
 
-/* ========== PROJECTS ========== */
-#projects{background:var(--dark);padding:80px 40px}
-#projects .section-tag{background:rgba(249,115,22,.2);color:var(--orange)}
-#projects .section-title{color:var(--white)}
-#projects .section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px}
-.view-all{color:var(--orange);text-decoration:none;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;transition:gap .2s}
-.view-all:hover{gap:10px}
-.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.project-card{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;transition:all .3s;cursor:pointer}
-.project-card:hover{transform:translateY(-6px);border-color:rgba(249,115,22,.3);box-shadow:0 16px 50px rgba(0,0,0,.4)}
-.project-img-wrap{overflow:hidden;position:relative}
-.project-img{width:100%;height:200px;object-fit:cover;display:block;transition:transform .4s}
-.project-card:hover .project-img{transform:scale(1.04)}
-.project-overlay{position:absolute;inset:0;background:rgba(249,115,22,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;opacity:0;transition:opacity .3s}
-.project-card:hover .project-overlay{opacity:1}
-.overlay-btn{background:white;color:var(--orange-dark);padding:9px 20px;border-radius:50px;font-weight:700;font-size:12px;text-decoration:none;transition:transform .2s}
-.overlay-btn:hover{transform:scale(1.04)}
-.overlay-btn-ghost{background:transparent;color:white;border:1.5px solid rgba(255,255,255,.7);padding:8px 20px;border-radius:50px;font-weight:600;font-size:12px;text-decoration:none;transition:all .2s}
-.overlay-btn-ghost:hover{background:rgba(255,255,255,.15)}
-.project-body{padding:20px 22px}
-.project-category{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:7px}
-.project-body h3{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--white);margin-bottom:6px}
-.project-body p{font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:16px}
-.project-actions{display:flex;gap:10px;align-items:center}
-.btn-case{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:7px 16px;border-radius:50px;font-size:11px;font-weight:600;text-decoration:none;transition:all .2s}
-.btn-case:hover{border-color:var(--orange);color:var(--orange)}
-.btn-live{display:inline-flex;align-items:center;gap:5px;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.3);color:var(--orange);padding:7px 16px;border-radius:50px;font-size:11px;font-weight:600;text-decoration:none;transition:all .2s}
-.btn-live:hover{background:var(--orange);color:white}
+/* ════════════════════════════════════
+   PROJECTS
+════════════════════════════════════ */
+#sec-projects{background:var(--dark);padding:80px 40px}
+#sec-projects .section-tag{background:rgba(249,115,22,.2);color:var(--orange)}
+#sec-projects .section-title{color:var(--white)}
+#sec-projects .section-header{margin-bottom:40px}
+.view-all-btn{color:var(--orange);font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:5px;transition:gap .2s}
+.view-all-btn:hover{gap:9px}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.proj-card{background:var(--dark2);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);overflow:hidden;transition:all .3s}
+.proj-card:hover{transform:translateY(-6px);border-color:rgba(249,115,22,.3);box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.proj-img-wrap{overflow:hidden;position:relative;height:200px}
+.proj-img{width:100%;height:100%;object-fit:cover;transition:transform .4s;background:#2a3a2a}
+.proj-card:hover .proj-img{transform:scale(1.05)}
+.proj-overlay{
+  position:absolute;inset:0;background:rgba(249,115,22,.9);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  opacity:0;transition:opacity .3s;
+}
+.proj-card:hover .proj-overlay{opacity:1}
+.ol-btn{
+  background:white;color:var(--orange-dark);padding:8px 20px;border-radius:50px;
+  font-weight:700;font-size:12px;transition:transform .15s;display:inline-block;
+}
+.ol-btn:hover{transform:scale(1.04)}
+.ol-ghost{
+  color:white;border:1.5px solid rgba(255,255,255,.75);padding:7px 20px;
+  border-radius:50px;font-weight:600;font-size:12px;transition:background .2s;display:inline-block;
+}
+.ol-ghost:hover{background:rgba(255,255,255,.18)}
+.proj-body{padding:20px 22px}
+.proj-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.proj-body h3{font-family:var(--fd);font-weight:700;font-size:17px;color:white;margin-bottom:6px}
+.proj-body p{font-size:12px;color:rgba(255,255,255,.5);line-height:1.65;margin-bottom:16px}
+.proj-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.btn-cs{
+  display:inline-flex;align-items:center;gap:5px;
+  border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);
+  padding:6px 15px;border-radius:50px;font-size:11px;font-weight:600;transition:all .2s;
+}
+.btn-cs:hover{border-color:var(--orange);color:var(--orange)}
+.btn-lp{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(249,115,22,.13);border:1px solid rgba(249,115,22,.35);
+  color:var(--orange);padding:6px 15px;border-radius:50px;font-size:11px;font-weight:600;
+  transition:all .2s;
+}
+.btn-lp:hover{background:var(--orange);color:white}
 
-/* ========== CASE STUDY MODAL ========== */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
-.modal-overlay.open{display:flex}
-.modal{background:var(--white);border-radius:24px;width:100%;max-width:760px;max-height:90vh;overflow-y:auto;position:relative}
-.modal-close{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;background:var(--light-gray);border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--dark);transition:all .2s;z-index:2}
-.modal-close:hover{background:var(--dark);color:white}
-.modal-hero{width:100%;height:240px;object-fit:cover;border-radius:24px 24px 0 0;display:block}
-.modal-body{padding:32px}
-.modal-cat{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
-.modal-body h2{font-family:var(--font-display);font-weight:800;font-size:26px;color:var(--dark);margin-bottom:16px}
-.modal-stats{display:flex;gap:24px;margin-bottom:24px;padding:18px;background:var(--offwhite);border-radius:14px}
-.modal-stat-num{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--orange)}
-.modal-stat-label{font-size:11px;color:var(--gray);margin-top:2px}
-.modal-section-title{font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;margin-top:20px}
-.modal-body p{font-size:14px;color:var(--gray);line-height:1.75}
-.modal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.modal-tag{background:var(--orange-light);color:var(--orange-dark);padding:5px 12px;border-radius:50px;font-size:12px;font-weight:600}
-.modal-footer{display:flex;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border)}
-
-/* ========== TESTIMONIALS ========== */
-#testimonials{background:var(--dark);padding:80px 40px;border-top:1px solid rgba(255,255,255,.06)}
-#testimonials .section-tag{background:rgba(249,115,22,.2);color:var(--orange)}
-#testimonials .section-title{color:var(--white)}
-.testi-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;margin-top:44px}
-.testi-card{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:26px;transition:border-color .3s}
+/* ════════════════════════════════════
+   TESTIMONIALS
+════════════════════════════════════ */
+#sec-testimonials{background:var(--dark);padding:80px 40px;border-top:1px solid rgba(255,255,255,.06)}
+#sec-testimonials .section-tag{background:rgba(249,115,22,.2);color:var(--orange)}
+#sec-testimonials .section-title{color:white}
+.testi-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;margin-top:40px}
+.testi-card{background:var(--dark2);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:26px;transition:border-color .3s}
 .testi-card:hover{border-color:rgba(249,115,22,.3)}
-.testi-quote{font-size:14px;line-height:1.8;color:rgba(255,255,255,.75);margin-bottom:20px;font-style:italic}
+.testi-stars{color:var(--orange);font-size:12px;letter-spacing:1px;margin-bottom:14px}
+.testi-quote{font-size:13.5px;line-height:1.82;color:rgba(255,255,255,.75);font-style:italic;margin-bottom:20px}
 .testi-card.large .testi-quote{font-size:15px}
 .testi-author{display:flex;align-items:center;gap:11px}
-.testi-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--orange-light)}
-.testi-name{font-weight:600;font-size:13px;color:var(--white)}
-.testi-role{font-size:11px;color:rgba(255,255,255,.4)}
-.testi-stars{color:var(--orange);font-size:12px;margin-bottom:14px}
+.testi-av{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--orange-light);flex-shrink:0;background:#3a2a1a}
+.testi-name{font-weight:600;font-size:13px;color:white}
+.testi-role{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
 
-/* ========== SKILLS ========== */
-#skills{background:var(--offwhite);padding:80px 40px}
-.skills-wrap{margin-top:44px}
-.skill-category{margin-bottom:28px}
-.skill-cat-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
-.skill-pills{display:flex;flex-wrap:wrap;gap:9px}
-.skill-pill{background:white;border:1px solid var(--border);padding:9px 16px;border-radius:50px;font-size:12px;font-weight:500;color:var(--dark);transition:all .2s;display:flex;align-items:center;gap:6px;cursor:default}
-.skill-pill:hover{background:var(--orange);color:white;border-color:var(--orange);transform:translateY(-2px)}
+/* ════════════════════════════════════
+   SKILLS
+════════════════════════════════════ */
+#sec-skills{background:var(--offwhite);padding:80px 40px}
+.skills-body{margin-top:40px}
+.skill-group{margin-bottom:28px}
+.skill-group-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.pills{display:flex;flex-wrap:wrap;gap:9px}
+.pill{
+  background:white;border:1px solid var(--border);
+  padding:8px 16px;border-radius:50px;font-size:12px;font-weight:500;color:var(--dark);
+  transition:all .2s;display:inline-flex;align-items:center;gap:6px;
+}
+.pill:hover{background:var(--orange);color:white;border-color:var(--orange);transform:translateY(-2px)}
 
-/* ========== CONTACT ========== */
-#contact{background:var(--white);padding:80px 40px;display:flex;gap:60px;align-items:flex-start}
-.contact-left{flex:1}
-.contact-desc{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:32px}
-.contact-metrics{display:flex;flex-direction:column;gap:14px}
-.metric-row{background:var(--offwhite);border:1px solid var(--border);border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:14px}
-.metric-icon{width:42px;height:42px;background:var(--orange-light);border-radius:11px;display:flex;align-items:center;justify-content:center}
-.metric-icon svg{width:19px;height:19px;color:var(--orange-dark)}
-.metric-val{font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--dark)}
-.metric-lbl{font-size:11px;color:var(--gray)}
-.contact-right{flex:1}
-.contact-form{background:var(--offwhite);border:1px solid var(--border);border-radius:24px;padding:32px}
-.contact-form h3{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--dark);margin-bottom:24px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.form-group{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
-.form-group label{font-size:11px;font-weight:600;color:var(--dark);letter-spacing:.5px}
-.form-group input,.form-group textarea{padding:11px 14px;border:1px solid var(--border);border-radius:11px;font-size:13px;font-family:var(--font-body);color:var(--dark);background:white;transition:all .2s;outline:none}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,115,22,.1)}
-.form-group textarea{min-height:110px;resize:vertical}
-.form-submit{width:100%;background:var(--orange);color:white;padding:13px;border:none;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;transition:all .25s;font-family:var(--font-body)}
-.form-submit:hover{background:var(--orange-dark);box-shadow:0 8px 30px rgba(249,115,22,.4);transform:translateY(-1px)}
+/* ════════════════════════════════════
+   CONTACT + FORMSPREE
+════════════════════════════════════ */
+#sec-contact{background:var(--white);padding:80px 40px;display:flex;gap:56px;align-items:flex-start}
+.contact-l{flex:1}
+.contact-l .section-title{margin-bottom:12px}
+.contact-desc{font-size:14px;color:var(--gray);line-height:1.78;margin-bottom:32px}
+.contact-info{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.ci-row{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--dark)}
+.ci-icon{width:36px;height:36px;background:var(--orange-light);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ci-icon svg{width:16px;height:16px;color:var(--orange-dark)}
+.ci-val{font-weight:500}
+.ci-val a{color:var(--dark);transition:color .2s}
+.ci-val a:hover{color:var(--orange)}
+.contact-metrics{display:flex;flex-direction:column;gap:12px}
+.cm-row{background:var(--offwhite);border:1px solid var(--border);border-radius:14px;padding:16px 20px;display:flex;align-items:center;gap:14px}
+.cm-icon{width:40px;height:40px;background:var(--orange-light);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cm-icon svg{width:18px;height:18px;color:var(--orange-dark)}
+.cm-val{font-family:var(--fd);font-size:19px;font-weight:800;color:var(--dark)}
+.cm-lbl{font-size:11px;color:var(--gray)}
+/* form */
+.contact-r{flex:1}
+.form-box{background:var(--offwhite);border:1px solid var(--border);border-radius:var(--radius-xl);padding:32px}
+.form-box h3{font-family:var(--fd);font-weight:700;font-size:20px;color:var(--dark);margin-bottom:24px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:0}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.fg label{font-size:11px;font-weight:600;color:var(--dark);letter-spacing:.5px;text-transform:uppercase}
+.fg input,.fg textarea,.fg select{
+  padding:11px 14px;border:1.5px solid var(--border);border-radius:11px;
+  font-size:13px;font-family:var(--fb);color:var(--dark);background:white;
+  transition:border-color .2s,box-shadow .2s;outline:none;width:100%;
+  -webkit-appearance:none;appearance:none;
+}
+.fg input:focus,.fg textarea:focus,.fg select:focus{
+  border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,115,22,.12);
+}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--gray-light)}
+.fg textarea{min-height:110px;resize:vertical;line-height:1.6}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B7280' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.fg select option{color:var(--dark)}
+.form-submit{
+  width:100%;background:var(--orange);color:white;padding:13px;
+  border-radius:50px;font-size:14px;font-weight:700;transition:all .25s;
+  display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;
+}
+.form-submit:hover:not(:disabled){background:var(--orange-dark);box-shadow:var(--shadow-orange);transform:translateY(-1px)}
+.form-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.form-msg{display:none;border-radius:12px;padding:16px 20px;font-size:13px;font-weight:500;line-height:1.6;margin-top:14px;text-align:center}
+.form-msg.success{display:block;background:var(--success-bg);border:1px solid var(--success-border);color:var(--success-text)}
+.form-msg.error{display:block;background:var(--error-bg);border:1px solid var(--error-border);color:var(--error-text)}
 
-/* ========== FOOTER ========== */
-footer{background:var(--dark);padding:36px 40px;display:flex;align-items:center;justify-content:space-between}
-.footer-brand{font-family:var(--font-display);font-weight:800;font-size:19px;color:white}
-.footer-brand span{color:var(--orange)}
+/* ════════════════════════════════════
+   FOOTER
+════════════════════════════════════ */
+.site-footer{background:var(--dark);padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.footer-brand{font-family:var(--fd);font-weight:800;font-size:19px;color:white}
+.footer-brand .accent{color:var(--orange)}
 .footer-copy{font-size:12px;color:rgba(255,255,255,.4)}
 .footer-socials{display:flex;gap:10px}
-.social-btn{width:38px;height:38px;border:1px solid rgba(255,255,255,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;font-weight:700;transition:all .2s}
-.social-btn:hover{border-color:var(--orange);color:var(--orange);background:rgba(249,115,22,.1)}
+.soc{
+  width:37px;height:37px;border:1px solid rgba(255,255,255,.16);border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.55);font-size:12px;font-weight:700;
+  transition:all .2s;
+}
+.soc:hover{border-color:var(--orange);color:var(--orange);background:rgba(249,115,22,.1)}
+.soc svg{width:15px;height:15px}
 
-/* ========== RESPONSIVE ========== */
-@media(max-width:1024px){
+/* ════════════════════════════════════
+   CASE STUDY PAGES
+════════════════════════════════════ */
+.cs-page{}
+.cs-back-bar{
+  background:var(--offwhite);border-bottom:1px solid var(--border);
+  padding:12px 40px;display:flex;align-items:center;gap:8px;
+  position:sticky;top:64px;z-index:100;
+}
+.cs-back{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--gray);font-size:13px;font-weight:600;transition:color .2s;
+}
+.cs-back:hover{color:var(--orange)}
+.cs-back svg{width:15px;height:15px}
+.cs-back-sep{color:var(--gray-light);font-size:12px}
+.cs-back-title{font-size:13px;color:var(--gray-light)}
+.cs-hero{position:relative;height:400px;overflow:hidden}
+.cs-hero img{width:100%;height:100%;object-fit:cover;background:#2a3020}
+.cs-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.05) 20%,rgba(0,0,0,.82))}
+.cs-hero-label{position:absolute;bottom:0;left:0;right:0;padding:36px 48px}
+.cs-hero-cat{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.cs-hero-title{font-family:var(--fd);font-size:clamp(26px,4vw,50px);font-weight:800;color:white;line-height:1.1}
+.cs-body{max-width:880px;margin:0 auto;padding:52px 40px 80px}
+.cs-stats{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.cs-stat{background:var(--offwhite);border:1px solid var(--border);border-radius:14px;padding:18px 24px;flex:1;min-width:120px}
+.cs-stat-val{font-family:var(--fd);font-size:22px;font-weight:800;color:var(--orange)}
+.cs-stat-lbl{font-size:11px;color:var(--gray);margin-top:4px}
+.cs-sec{margin-bottom:30px}
+.cs-sec-title{font-family:var(--fd);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-bottom:10px}
+.cs-sec p{font-size:15px;color:var(--gray);line-height:1.85}
+.cs-hr{height:1px;background:var(--border);margin:32px 0}
+.cs-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.cs-tag{background:var(--orange-light);color:var(--orange-dark);padding:5px 13px;border-radius:50px;font-size:12px;font-weight:600}
+.cs-imgs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0 0}
+.cs-imgs img{width:100%;border-radius:14px;object-fit:cover;height:190px;background:#e0d5c5}
+.cs-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:44px;padding-top:28px;border-top:1px solid var(--border)}
+
+/* ════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════ */
+@media(max-width:1100px){
   .hero-visual{display:none}
-  #about{flex-direction:column}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  #sec-about{flex-direction:column}
   .about-right{width:100%}
-  .about-img{width:100%;height:280px}
-  .projects-grid{grid-template-columns:1fr}
-  #contact{flex-direction:column}
+  .about-img{width:100%;max-width:100%;height:260px}
+  .proj-grid{grid-template-columns:1fr}
+  #sec-contact{flex-direction:column}
   .testi-grid{grid-template-columns:1fr}
-  .services-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
-  .sidebar{width:56px}
+  .sidebar{width:54px}
   .sidebar-link span{display:none}
-  .main{margin-left:56px}
+  .main{margin-left:54px}
   .topnav{padding:0 16px}
   .topnav-links{display:none}
-  .menu-toggle{display:block}
-  section{padding:60px 20px}
-  #home,#about,#projects,#contact,#services,#skills,#testimonials{padding:60px 20px}
-  footer{padding:28px 20px;flex-direction:column;gap:18px;text-align:center}
-  .topnav-links.open{display:flex;flex-direction:column;position:fixed;top:64px;left:56px;right:0;background:white;padding:18px;border-bottom:1px solid var(--border);gap:18px;z-index:89}
-  .form-row{grid-template-columns:1fr}
-  .about-stats{gap:18px}
-  #services .section-header{flex-direction:column;align-items:flex-start;gap:10px}
-  .services-grid{grid-template-columns:1fr}
+  .menu-toggle{display:flex}
+  .topnav-links.open{
+    display:flex;flex-direction:column;
+    position:fixed;top:64px;left:54px;right:0;
+    background:white;padding:20px 24px;gap:18px;
+    border-bottom:1px solid var(--border);z-index:190;
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+  }
+  .topnav-links.open li a{font-size:15px;color:var(--dark)}
+  #sec-home,#sec-about,#sec-projects,#sec-contact,#sec-services,#sec-skills,#sec-testimonials{padding:52px 20px}
+  .site-footer{padding:28px 20px;flex-direction:column;text-align:center}
+  .svc-grid{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  .section-header{flex-direction:column;align-items:flex-start}
+  .cs-back-bar{padding:12px 20px}
+  .cs-hero-label{padding:24px 20px}
+  .cs-body{padding:32px 20px 60px}
+  .cs-imgs{grid-template-columns:1fr}
+  .about-stats{gap:20px}
 }
-
-/* ANIMATIONS */
-.fade-up{opacity:0;transform:translateY(28px);transition:all .7s cubic-bezier(.22,1,.36,1)}
-.fade-up.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 
-<!-- CASE STUDY MODAL -->
-<div class="modal-overlay" id="caseModal">
-  <div class="modal" id="modalContent">
-    <button class="modal-close" id="modalClose">✕</button>
-    <img class="modal-hero" id="modalImg" src="" alt="">
-    <div class="modal-body">
-      <div class="modal-cat" id="modalCat"></div>
-      <h2 id="modalTitle"></h2>
-      <div class="modal-stats" id="modalStats"></div>
-      <div class="modal-section-title">Overview</div>
-      <p id="modalOverview"></p>
-      <div class="modal-section-title">Problem</div>
-      <p id="modalProblem"></p>
-      <div class="modal-section-title">Solution</div>
-      <p id="modalSolution"></p>
-      <div class="modal-section-title">Stack & Tools</div>
-      <div class="modal-tags" id="modalTags"></div>
-      <div class="modal-footer" id="modalFooter"></div>
-    </div>
-  </div>
-</div>
-
 <div class="shell">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">A</div>
-    <nav class="sidebar-nav">
-      <a href="#home" class="sidebar-link active" title="Home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span>Home</span>
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar" aria-label="Sidebar navigation">
+  <button class="sidebar-logo" onclick="goTo('home')" aria-label="Go to home">A</button>
+  <nav class="sidebar-nav" aria-label="Quick navigation">
+    <button class="sidebar-link active" id="sl-home" onclick="goTo('home')" title="Home" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </button>
+    <button class="sidebar-link" id="sl-projects" onclick="goTo('projects')" title="Projects" aria-label="Projects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <span>Work</span>
+    </button>
+    <button class="sidebar-link" id="sl-about" onclick="goTo('about')" title="About" aria-label="About">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>About</span>
+    </button>
+    <button class="sidebar-link" id="sl-skills" onclick="goTo('skills')" title="Skills" aria-label="Skills">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span>Skills</span>
+    </button>
+    <button class="sidebar-link" id="sl-contact" onclick="goTo('contact')" title="Contact" aria-label="Contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>Contact</span>
+    </button>
+  </nav>
+  <div class="sidebar-bottom">
+    <!-- Plain mailto — NOT obfuscated by Cloudflare when opened locally -->
+    <a href="#sec-contact" onclick="goTo('contact');return false;" class="sidebar-link" title="Send email" aria-label="Send email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+  </div>
+</aside>
+
+<div class="main">
+
+<!-- ═══ TOPNAV ═══ -->
+<header>
+  <nav class="topnav" aria-label="Main navigation">
+    <button class="topnav-brand" onclick="goTo('home')">Adesina Muiz</button>
+    <ul class="topnav-links" id="navLinks" role="list">
+      <li><a onclick="goTo('home')" id="nl-home" class="active" role="menuitem">Home</a></li>
+      <li><a onclick="goTo('projects')" id="nl-projects" role="menuitem">Projects</a></li>
+      <li><a onclick="goTo('about')" id="nl-about" role="menuitem">About</a></li>
+      <li><a onclick="goTo('services')" id="nl-services" role="menuitem">Services</a></li>
+      <li><a onclick="goTo('skills')" id="nl-skills" role="menuitem">Skills</a></li>
+      <li><a onclick="goTo('contact')" id="nl-contact" role="menuitem">Contact</a></li>
+    </ul>
+    <div class="topnav-right">
+      <button class="btn-talk" onclick="goTo('contact')">💬 Let's Talk</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════════
+     MAIN PAGE
+═══════════════════════════════════════ -->
+<div id="page-main" class="page active" role="main">
+
+  <!-- HERO -->
+  <section id="sec-home" aria-label="Hero">
+    <div class="hero-content fade-up">
+      <div class="hero-badge" role="status">✅ Available for work</div>
+      <h1 class="hero-title">
+        UI/UX &amp; App Designer<br>
+        <span class="accent">Clean Interfaces,</span>
+        Real Results
+      </h1>
+      <p class="hero-sub">I design mobile apps, web platforms, and dashboards that convert — turning complex problems into intuitive, user-loved experiences.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="goTo('projects')">View Projects →</button>
+        <button class="btn-outline" onclick="goTo('contact')">Hire Me</button>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-wrap">
+        <div class="hero-blob"></div>
+        <img class="hero-photo"
+             src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=640&h=800&fit=crop&crop=faces&auto=format&q=80"
+             alt="Adesina Muiz — UI/UX Designer"
+             loading="eager"
+             width="320" height="400">
+        <div class="float-card fc1">
+          <div class="fc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></div>
+          <div><div class="fc-num">5-Star</div><div class="fc-stars">★★★★★</div><div class="fc-lbl">App Store Rating</div></div>
+        </div>
+        <div class="float-card fc2">
+          <div class="fc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><div class="fc-num">+25%</div><div class="fc-lbl">Avg. Conversion Lift</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="sec-about" aria-label="About me">
+    <div class="about-left fade-up">
+      <div class="section-tag">About Me</div>
+      <h2 class="section-title">Designing for Impact</h2>
+      <p class="about-body">
+        UI/UX designer specialising in mobile apps, SaaS platforms, and web interfaces.
+        I bridge user psychology with business goals — delivering designs that are both beautiful and measurably effective.
+        With 50+ shipped projects and a track record of boosting engagement by 30%+, I bring both craft and strategy to every brief.
+      </p>
+      <div class="about-stats">
+        <div><div class="stat-val">50+</div><div class="stat-lbl">Projects Shipped</div></div>
+        <div><div class="stat-val">+30%</div><div class="stat-lbl">Avg. Engagement Lift</div></div>
+        <div><div class="stat-val">5★</div><div class="stat-lbl">Client Rating</div></div>
+      </div>
+      <div class="about-btns">
+        <button class="btn-primary" onclick="goTo('services')">My Process →</button>
+        <button class="btn-outline" onclick="goTo('contact')">Work With Me</button>
+      </div>
+    </div>
+    <div class="about-right fade-up">
+      <div class="about-img-wrap">
+        <img class="about-img"
+             src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=720&h=840&fit=crop&crop=faces&auto=format&q=80"
+             alt="Adesina Muiz at work"
+             loading="lazy" width="360" height="420">
+        <div class="a-badge" aria-hidden="true">
+          <div class="a-badge-icon">🎨</div>
+          <div class="a-badge-val">5-Star</div>
+          <div class="a-badge-lbl">App Store Rating</div>
+        </div>
+        <div class="a-tools" aria-hidden="true">
+          <div class="tool-dots">
+            <div class="tool-dot">🎭</div>
+            <div class="tool-dot" style="background:#4f46e5">📐</div>
+            <div class="tool-dot" style="background:#0891b2">📱</div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--dark)">SaaS Redesign</div>
+            <div style="font-size:10px;color:var(--gray)">+25% conversion</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="sec-services" aria-label="Services">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">What I Do</div>
+        <h2 class="section-title">Services</h2>
+      </div>
+      <button class="btn-primary" onclick="goTo('contact')">Work With Me →</button>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <div class="svc-info"><h3>Mobile App Design</h3><p>Intuitive iOS &amp; Android experiences users keep returning to — from user flows to pixel-perfect UI.</p></div>
+      </div>
+      <div class="svc-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="svc-info"><h3>Website UI Design</h3><p>Responsive, conversion-optimised web designs that elevate brand presence and drive measurable action.</p></div>
+      </div>
+      <div class="svc-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="svc-info"><h3>Dashboard Design</h3><p>Complex data simplified into clear, actionable interfaces that empower smarter, faster decisions.</p></div>
+      </div>
+      <div class="svc-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="svc-info"><h3>App Development</h3><p>From Figma to functional — HTML/CSS/JS implementation of pixel-perfect, responsive, and accessible interfaces.</p></div>
+      </div>
+      <div class="svc-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="svc-info"><h3>UX Strategy</h3><p>Research-backed user journeys and testing protocols that validate every product decision before a line of code is written.</p></div>
+      </div>
+      <div class="svc-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <div class="svc-info"><h3>Design Systems</h3><p>Scalable component libraries and design tokens that keep large product teams moving fast and visually consistent.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="sec-projects" aria-label="Portfolio projects">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">Portfolio</div>
+        <h2 class="section-title">Selected Projects</h2>
+      </div>
+      <button class="view-all-btn" onclick="goTo('projects')">View All Projects →</button>
+    </div>
+    <div class="proj-grid">
+
+      <!-- Fintech -->
+      <article class="proj-card fade-up">
+        <div class="proj-img-wrap">
+          <img class="proj-img"
+               src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=720&h=400&fit=crop&auto=format&q=75"
+               alt="Fintech App UI — crypto trading and portfolio management"
+               loading="lazy" width="720" height="400">
+          <div class="proj-overlay" aria-hidden="true">
+            <button class="ol-btn" onclick="openCS('fintech')">View Case Study</button>
+            <a class="ol-ghost" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">Live Preview ↗</a>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Mobile App · Fintech</div>
+          <h3>Fintech App UI</h3>
+          <p>Crypto trading &amp; portfolio app with real-time data visualisations and a polished dark-mode system.</p>
+          <div class="proj-actions">
+            <button class="btn-cs" onclick="openCS('fintech')">Case Study →</button>
+            <a class="btn-lp" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">Live Preview ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- E-commerce -->
+      <article class="proj-card fade-up">
+        <div class="proj-img-wrap">
+          <img class="proj-img"
+               src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=720&h=400&fit=crop&auto=format&q=75"
+               alt="E-commerce App UI — fashion shopping experience"
+               loading="lazy" width="720" height="400">
+          <div class="proj-overlay" aria-hidden="true">
+            <button class="ol-btn" onclick="openCS('ecommerce')">View Case Study</button>
+            <a class="ol-ghost" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">Live Preview ↗</a>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Mobile App · E-commerce</div>
+          <h3>E-commerce App UI</h3>
+          <p>Streamlined browsing and checkout flow engineered for conversion and a delightful shopping experience.</p>
+          <div class="proj-actions">
+            <button class="btn-cs" onclick="openCS('ecommerce')">Case Study →</button>
+            <a class="btn-lp" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">Live Preview ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- SaaS -->
+      <article class="proj-card fade-up">
+        <div class="proj-img-wrap">
+          <img class="proj-img"
+               src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=720&h=400&fit=crop&auto=format&q=75"
+               alt="AI SaaS Landing Page — high-converting editorial layout"
+               loading="lazy" width="720" height="400">
+          <div class="proj-overlay" aria-hidden="true">
+            <button class="ol-btn" onclick="openCS('saas')">View Case Study</button>
+            <a class="ol-ghost" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">Live Preview ↗</a>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Web · SaaS</div>
+          <h3>AI SaaS Landing Page</h3>
+          <p>High-converting landing for an AI productivity tool with bold editorial layout and micro-animations.</p>
+          <div class="proj-actions">
+            <button class="btn-cs" onclick="openCS('saas')">Case Study →</button>
+            <a class="btn-lp" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">Live Preview ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Crypto Dashboard -->
+      <article class="proj-card fade-up">
+        <div class="proj-img-wrap">
+          <img class="proj-img"
+               src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=720&h=400&fit=crop&auto=format&q=75"
+               alt="Crypto Dashboard UI — dark-mode trading dashboard"
+               loading="lazy" width="720" height="400">
+          <div class="proj-overlay" aria-hidden="true">
+            <button class="ol-btn" onclick="openCS('crypto')">View Case Study</button>
+            <a class="ol-ghost" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">Live Preview ↗</a>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Dashboard · Crypto</div>
+          <h3>Crypto Dashboard UI</h3>
+          <p>Complex order-book and trading data simplified into a clean, accessible dark-mode dashboard.</p>
+          <div class="proj-actions">
+            <button class="btn-cs" onclick="openCS('crypto')">Case Study →</button>
+            <a class="btn-lp" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">Live Preview ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="sec-testimonials" aria-label="Client testimonials">
+    <div class="section-tag">Client Reviews</div>
+    <h2 class="section-title">What Clients Say</h2>
+    <div class="testi-grid">
+      <div class="testi-card large fade-up">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <blockquote class="testi-quote">"Working with Adesina was seamless. Clean designs, delivered ahead of schedule, and he genuinely understood how to turn our brief into something beautiful and functional."</blockquote>
+        <div class="testi-author">
+          <img class="testi-av"
+               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop&crop=faces&auto=format&q=80"
+               alt="Jane D., CEO of CryptoStart"
+               loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Jane D.</div><div class="testi-role">CEO, CryptoStart</div></div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <blockquote class="testi-quote">"Professional, fast, and detail-oriented. The app UI exceeded our expectations completely."</blockquote>
+        <div class="testi-author">
+          <img class="testi-av"
+               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop&crop=faces&auto=format&q=80"
+               alt="Benny V., Founder of PayFlow"
+               loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Benny V.</div><div class="testi-role">Founder, PayFlow</div></div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <blockquote class="testi-quote">"Conversion rate jumped 25% after the redesign. Best design investment we've ever made."</blockquote>
+        <div class="testi-author">
+          <img class="testi-av"
+               src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&crop=faces&auto=format&q=80"
+               alt="Mark T., CTO of LaunchPad"
+               loading="lazy" width="40" height="40">
+          <div><div class="testi-name">Mark T.</div><div class="testi-role">CTO, LaunchPad</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="sec-skills" aria-label="Skills and tools">
+    <div class="section-tag">Expertise</div>
+    <h2 class="section-title">Skills &amp; Tools</h2>
+    <div class="skills-body">
+      <div class="skill-group fade-up">
+        <div class="skill-group-label">Design</div>
+        <div class="pills">
+          <span class="pill">🎨 UI Design</span>
+          <span class="pill">🔄 UX Strategy</span>
+          <span class="pill">📱 Mobile App Design</span>
+          <span class="pill">💻 Dashboard Design</span>
+          <span class="pill">🗂 Design Systems</span>
+          <span class="pill">🧪 Prototyping &amp; Testing</span>
+          <span class="pill">🎯 Wireframing</span>
+          <span class="pill">🖌 Visual Design</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up">
+        <div class="skill-group-label">Tools</div>
+        <div class="pills">
+          <span class="pill">🎭 Figma</span>
+          <span class="pill">📐 Adobe XD</span>
+          <span class="pill">🎬 After Effects</span>
+          <span class="pill">🖼 Photoshop</span>
+          <span class="pill">✍️ Illustrator</span>
+          <span class="pill">🔗 Zeplin</span>
+          <span class="pill">📊 Maze (Testing)</span>
+          <span class="pill">🗂 Notion</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up">
+        <div class="skill-group-label">Development</div>
+        <div class="pills">
+          <span class="pill">⚡ HTML5</span>
+          <span class="pill">🎨 CSS3 / Tailwind</span>
+          <span class="pill">📜 JavaScript (ES6+)</span>
+          <span class="pill">⚛️ React (basics)</span>
+          <span class="pill">📲 Responsive Design</span>
+          <span class="pill">♿ Accessibility (WCAG)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT — FORMSPREE -->
+  <section id="sec-contact" aria-label="Contact">
+    <div class="contact-l fade-up">
+      <div class="section-tag">Get In Touch</div>
+      <h2 class="section-title">Let's Build<br>Something Great</h2>
+      <p class="contact-desc">Available for freelance projects and long-term collaborations. Fill in the form and I'll respond within 48 hours.</p>
+
+      <!-- Direct contact info — visible to all visitors -->
+      <div class="contact-info">
+        <div class="ci-row">
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="ci-val"><a href="mailto:muiz@example.com" aria-label="Send email to muiz@example.com">muiz@example.com</a></div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="ci-val">Lagos, Nigeria · Remote Worldwide</div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div class="ci-val"><a href="https://www.linkedin.com/in/adesina-muiz" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">linkedin.com/in/adesina-muiz ↗</a></div>
+        </div>
+      </div>
+
+      <div class="contact-metrics">
+        <div class="cm-row">
+          <div class="cm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><div class="cm-val">+25%</div><div class="cm-lbl">Average Conversion Boost</div></div>
+        </div>
+        <div class="cm-row">
+          <div class="cm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg></div>
+          <div><div class="cm-val">5-Star</div><div class="cm-lbl">Consistent Client Rating</div></div>
+        </div>
+        <div class="cm-row">
+          <div class="cm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="cm-val">&lt; 48h</div><div class="cm-lbl">Average Response Time</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-r fade-up">
+      <div class="form-box" role="region" aria-label="Contact form">
+        <h3>Send a Message</h3>
+        <!-- Formspree — action posts to your endpoint; JS handles AJAX response -->
+        <form id="contactForm" action="https://formspree.io/f/mbdpvobw" method="POST" novalidate>
+          <div class="frow">
+            <div class="fg">
+              <label for="cf-name">Full Name <span aria-hidden="true" style="color:var(--orange)">*</span></label>
+              <input type="text" id="cf-name" name="name" placeholder="John Doe" required autocomplete="name">
+            </div>
+            <div class="fg">
+              <label for="cf-email">Email Address <span aria-hidden="true" style="color:var(--orange)">*</span></label>
+              <input type="email" id="cf-email" name="email" placeholder="john@example.com" required autocomplete="email">
+            </div>
+          </div>
+          <div class="fg">
+            <label for="cf-type">Project Type</label>
+            <select id="cf-type" name="project_type">
+              <option value="" disabled selected>Select a service…</option>
+              <option value="Mobile App Design">Mobile App Design</option>
+              <option value="Website UI Design">Website UI Design</option>
+              <option value="Dashboard Design">Dashboard Design</option>
+              <option value="App Development">App Development</option>
+              <option value="UX Strategy">UX Strategy</option>
+              <option value="Design System">Design System</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="cf-budget">Budget Range</label>
+            <select id="cf-budget" name="budget">
+              <option value="" disabled selected>Select your budget…</option>
+              <option value="Under $500">Under $500</option>
+              <option value="$500 – $1,500">$500 – $1,500</option>
+              <option value="$1,500 – $5,000">$1,500 – $5,000</option>
+              <option value="$5,000+">$5,000+</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="cf-msg">Message <span aria-hidden="true" style="color:var(--orange)">*</span></label>
+            <textarea id="cf-msg" name="message" placeholder="Tell me about your project, goals, and timeline…" required></textarea>
+          </div>
+          <!-- Anti-spam honeypot -->
+          <div style="display:none" aria-hidden="true">
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" name="_subject" value="New enquiry — Adesina Muiz Portfolio">
+          <button type="submit" class="form-submit" id="formBtn">
+            <span id="formBtnText">Send Message</span>
+            <span id="formBtnIcon">🚀</span>
+          </button>
+        </form>
+        <div class="form-msg" id="formMsg" role="alert" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <button class="footer-brand" onclick="goTo('home')" aria-label="Go to top">Adesina <span class="accent">Muiz</span></button>
+    <p class="footer-copy">© 2026 Adesina Muiz · All rights reserved.</p>
+    <nav class="footer-socials" aria-label="Social media links">
+      <a href="https://x.com/adesina_muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="X / Twitter">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632 5.904-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       </a>
-      <a href="#projects" class="sidebar-link" title="Work">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        <span>Work</span>
+      <a href="https://www.linkedin.com/in/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       </a>
-      <a href="#about" class="sidebar-link" title="About">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <span>About</span>
+      <a href="https://github.com/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
       </a>
-      <a href="#skills" class="sidebar-link" title="Skills">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        <span>Skills</span>
-      </a>
-      <a href="#contact" class="sidebar-link" title="Contact">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <span>Contact</span>
+      <a href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="Behance">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.17 11.7c.57-.33.99-.75 1.27-1.25.28-.51.42-1.07.42-1.68 0-.6-.13-1.14-.38-1.62-.26-.48-.6-.87-1.04-1.17-.44-.3-.93-.52-1.49-.67A6.8 6.8 0 0 0 6.2 5H1v14h5.54c.6 0 1.18-.07 1.74-.2.56-.14 1.07-.37 1.52-.69.45-.32.81-.74 1.08-1.27.27-.52.4-1.14.4-1.85 0-.84-.2-1.56-.62-2.14-.41-.59-.99-1-1.49-1.15zm-5.3-4.34h2.3c.26 0 .51.03.74.08.23.06.44.15.61.28.18.14.32.31.42.52.1.21.15.46.15.74 0 .54-.16.95-.47 1.23-.32.28-.73.42-1.23.42H3.87V7.36zm3.92 8.02c-.12.23-.28.42-.49.57-.21.15-.44.26-.71.33-.27.07-.55.1-.84.1H3.87v-3.82h2.05c.32 0 .62.04.9.12.28.08.52.2.73.37.21.17.37.38.49.64.12.26.18.56.18.9 0 .34-.07.65-.2.88l.01.01zm5.36-2.14c.18-.41.47-.75.85-1.02.38-.27.82-.45 1.31-.54.49-.1.99-.15 1.5-.15.46 0 .93.03 1.4.1.47.07.9.21 1.28.41V9.3c0-.44-.07-.83-.21-1.16-.14-.33-.35-.6-.63-.83-.28-.22-.63-.39-1.04-.5-.41-.11-.89-.17-1.44-.17-.67 0-1.3.13-1.88.38-.57.25-1.07.67-1.48 1.24l1.63.98c.18-.33.43-.58.74-.75.32-.17.66-.25 1.03-.25.45 0 .81.1 1.09.31.28.21.42.54.42.99v.17c-.28-.08-.6-.15-.94-.21-.35-.05-.71-.08-1.08-.08-.56 0-1.08.06-1.56.19-.48.13-.9.32-1.25.59-.35.26-.62.6-.82 1-.2.4-.3.87-.3 1.4 0 .5.09.95.27 1.33.18.38.43.7.74.95.32.25.68.44 1.1.57.41.12.86.19 1.34.19.55 0 1.05-.12 1.5-.37.45-.25.81-.6 1.08-1.07h.04v1.26h1.92V13.8c0-.63-.1-1.19-.3-1.68l.03.12zm1.07 4.14c-.19-.1-.34-.23-.45-.4-.11-.17-.16-.37-.16-.61 0-.27.06-.5.18-.68.12-.18.28-.33.47-.44.2-.11.42-.19.67-.24.25-.04.5-.07.75-.07.22 0 .46.02.7.07.24.04.47.1.68.18v.3c0 .38-.07.7-.21.98-.14.28-.32.51-.55.69-.23.18-.48.31-.77.39-.28.08-.57.12-.85.12-.2 0-.39-.03-.56-.1l.1.01zM14.24 6.4h4.48v1.17h-4.48V6.4z"/></svg>
       </a>
     </nav>
-    <div class="sidebar-bottom">
-      <a href="mailto:muiz@example.com" class="sidebar-link" title="Email">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      </a>
-    </div>
-  </aside>
+  </footer>
 
-  <!-- MAIN -->
-  <div class="main">
+</div><!-- /#page-main -->
 
-    <!-- TOPNAV -->
-    <header>
-      <nav class="topnav">
-        <div class="topnav-brand">Adesina Muiz</div>
-        <ul class="topnav-links" id="navLinks">
-          <li><a href="#home" class="active">Home</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="topnav-right">
-          <a href="#contact" class="btn-talk">💬 Let's Talk</a>
-          <button class="menu-toggle" id="menuToggle">☰</button>
-        </div>
-      </nav>
-    </header>
-
-    <!-- HERO -->
-    <section id="home">
-      <div class="hero-content fade-up">
-        <div class="hero-badge">Available for work</div>
-        <h1 class="hero-title">
-          UI/UX &amp; App Designer<br>
-          <span>Clean Interfaces,</span>
-          Real Results
-        </h1>
-        <p class="hero-sub">I design mobile apps, web platforms, and dashboards that convert—turning complex problems into intuitive, user-loved experiences.</p>
-        <div class="hero-buttons">
-          <a href="#projects" class="btn-primary">View Projects →</a>
-          <a href="#contact" class="btn-outline">Hire Me</a>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="hero-visual-wrap">
-          <div class="hero-blob"></div>
-          <img class="hero-img-main"
-               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop&crop=face"
-               alt="Adesina Muiz — UI/UX Designer">
-          <div class="hero-card hero-card-1">
-            <div class="card-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-            </div>
-            <div>
-              <div class="card-num">5-Star</div>
-              <div class="stars">★★★★★</div>
-              <div class="card-label">App Store Rating</div>
-            </div>
-          </div>
-          <div class="hero-card hero-card-2">
-            <div class="card-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
-            <div>
-              <div class="card-num">+25%</div>
-              <div class="card-label">Avg. Conversion Lift</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="about-left fade-up">
-        <div class="section-tag">About Me</div>
-        <h2 class="section-title">Designing for Impact</h2>
-        <p class="about-body">UI/UX designer specialising in mobile apps, SaaS platforms, and web interfaces. I bridge user psychology with business goals—delivering designs that are both beautiful and measurably effective.</p>
-        <div class="about-stats">
-          <div class="stat-item">
-            <div class="stat-num">50+</div>
-            <div class="stat-label">Projects Shipped</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">+30%</div>
-            <div class="stat-label">Avg. Engagement Lift</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">5★</div>
-            <div class="stat-label">Client Rating</div>
-          </div>
-        </div>
-        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="#services" class="btn-primary">My Process →</a>
-          <a href="#contact" class="btn-outline">Work With Me</a>
-        </div>
-      </div>
-
-      <div class="about-right fade-up">
-        <div class="about-img-wrap">
-          <img class="about-img"
-               src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&h=800&fit=crop&crop=face"
-               alt="Adesina Muiz">
-          <div class="about-badge">
-            <div class="about-badge-icon">🎨</div>
-            <div class="about-badge-text">5-Star</div>
-            <div class="about-badge-sub">App Store Rating</div>
-          </div>
-          <div class="about-tools">
-            <div class="tool-icons">
-              <div class="tool-icon">🎭</div>
-              <div class="tool-icon" style="background:#4f46e5;">📐</div>
-              <div class="tool-icon" style="background:#0891b2;">📱</div>
-            </div>
-            <div>
-              <div style="font-size:12px;font-weight:600;color:var(--dark);">SaaS Redesign</div>
-              <div style="font-size:10px;color:var(--gray);">+25% conversion</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-      <div class="section-header">
-        <div>
-          <div class="section-tag">What I Do</div>
-          <h2 class="section-title">Services</h2>
-        </div>
-        <a href="#contact" class="btn-primary">Work With Me →</a>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card fade-up">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-          </div>
-          <div class="service-info">
-            <h3>Mobile App Design</h3>
-            <p>Intuitive iOS & Android experiences users keep returning to—from flows to polished UI.</p>
-          </div>
-        </div>
-
-        <div class="service-card fade-up">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <div class="service-info">
-            <h3>Website UI Design</h3>
-            <p>Responsive, conversion-optimised web designs that elevate brand presence and drive action.</p>
-          </div>
-        </div>
-
-        <div class="service-card fade-up">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <div class="service-info">
-            <h3>Dashboard Design</h3>
-            <p>Complex data simplified into clear, actionable interfaces that empower smarter decisions.</p>
-          </div>
-        </div>
-
-        <div class="service-card fade-up">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <div class="service-info">
-            <h3>App Development</h3>
-            <p>From Figma to functional—HTML/CSS/JS implementation of pixel-perfect, responsive interfaces.</p>
-          </div>
-        </div>
-
-        <div class="service-card fade-up">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <div class="service-info">
-            <h3>UX Strategy</h3>
-            <p>Research-backed user journeys and testing protocols that validate every product decision.</p>
-          </div>
-        </div>
-
-        <div class="service-card fade-up">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          </div>
-          <div class="service-info">
-            <h3>Design Systems</h3>
-            <p>Scalable component libraries and tokens that keep large product teams moving fast and consistent.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects">
-      <div class="section-header">
-        <div>
-          <div class="section-tag">Portfolio</div>
-          <h2 class="section-title">Selected Projects</h2>
-        </div>
-        <a href="#" class="view-all">View All →</a>
-      </div>
-
-      <div class="projects-grid">
-
-        <!-- Project 1 -->
-        <div class="project-card fade-up">
-          <div class="project-img-wrap">
-            <img class="project-img"
-                 src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=700&h=400&fit=crop"
-                 alt="Fintech App UI">
-            <div class="project-overlay">
-              <a href="#" class="overlay-btn" onclick="openModal('fintech');return false;">View Case Study</a>
-              <a href="#" class="overlay-btn-ghost">Live Preview ↗</a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-category">Mobile App · Fintech</div>
-            <h3>Fintech App UI</h3>
-            <p>Crypto trading & portfolio app with real-time data visualisations and a clean dark-mode system.</p>
-            <div class="project-actions">
-              <a href="#" class="btn-case" onclick="openModal('fintech');return false;">Case Study →</a>
-              <a href="#" class="btn-live">Live Preview ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="project-card fade-up">
-          <div class="project-img-wrap">
-            <img class="project-img"
-                 src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&h=400&fit=crop"
-                 alt="E-commerce App">
-            <div class="project-overlay">
-              <a href="#" class="overlay-btn" onclick="openModal('ecommerce');return false;">View Case Study</a>
-              <a href="#" class="overlay-btn-ghost">Live Preview ↗</a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-category">Mobile App · E-commerce</div>
-            <h3>E-commerce App UI</h3>
-            <p>Streamlined browsing and checkout flow engineered for conversion and delightful UX.</p>
-            <div class="project-actions">
-              <a href="#" class="btn-case" onclick="openModal('ecommerce');return false;">Case Study →</a>
-              <a href="#" class="btn-live">Live Preview ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="project-card fade-up">
-          <div class="project-img-wrap">
-            <img class="project-img"
-                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&h=400&fit=crop"
-                 alt="AI SaaS Landing Page">
-            <div class="project-overlay">
-              <a href="#" class="overlay-btn" onclick="openModal('saas');return false;">View Case Study</a>
-              <a href="#" class="overlay-btn-ghost">Live Preview ↗</a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-category">Web · SaaS</div>
-            <h3>AI SaaS Landing Page</h3>
-            <p>High-converting landing for an AI productivity tool with bold editorial layout and micro-animations.</p>
-            <div class="project-actions">
-              <a href="#" class="btn-case" onclick="openModal('saas');return false;">Case Study →</a>
-              <a href="#" class="btn-live">Live Preview ↗</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 4 -->
-        <div class="project-card fade-up">
-          <div class="project-img-wrap">
-            <img class="project-img"
-                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&h=400&fit=crop"
-                 alt="Crypto Dashboard">
-            <div class="project-overlay">
-              <a href="#" class="overlay-btn" onclick="openModal('crypto');return false;">View Case Study</a>
-              <a href="#" class="overlay-btn-ghost">Live Preview ↗</a>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-category">Dashboard · Crypto</div>
-            <h3>Crypto Dashboard UI</h3>
-            <p>Complex order-book and trading data simplified into a clean, accessible dark-mode dashboard.</p>
-            <div class="project-actions">
-              <a href="#" class="btn-case" onclick="openModal('crypto');return false;">Case Study →</a>
-              <a href="#" class="btn-live">Live Preview ↗</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials">
-      <div class="section-tag">Client Reviews</div>
-      <h2 class="section-title">What Clients Say</h2>
-      <div class="testi-grid">
-        <div class="testi-card large fade-up">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Working with Adesina was seamless. Clean designs, ahead of schedule, and he genuinely understood how to turn our brief into something both beautiful and functional."</p>
-          <div class="testi-author">
-            <img class="testi-avatar"
-                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face"
-                 alt="Jane D.">
-            <div>
-              <div class="testi-name">Jane D.</div>
-              <div class="testi-role">CEO, CryptoStart</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card fade-up">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Professional, fast, and detail-oriented. The app UI exceeded our expectations."</p>
-          <div class="testi-author">
-            <img class="testi-avatar"
-                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
-                 alt="Benny V.">
-            <div>
-              <div class="testi-name">Benny V.</div>
-              <div class="testi-role">Founder, PayFlow</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card fade-up">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Conversion rate jumped 25% after the redesign. Best design investment we've made."</p>
-          <div class="testi-author">
-            <img class="testi-avatar"
-                 src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face"
-                 alt="Mark T.">
-            <div>
-              <div class="testi-name">Mark T.</div>
-              <div class="testi-role">CTO, LaunchPad</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="section-tag">Expertise</div>
-      <h2 class="section-title">Skills & Tools</h2>
-      <div class="skills-wrap">
-        <div class="skill-category fade-up">
-          <div class="skill-cat-label">Design</div>
-          <div class="skill-pills">
-            <span class="skill-pill">🎨 UI Design</span>
-            <span class="skill-pill">🔄 UX Strategy</span>
-            <span class="skill-pill">📱 Mobile App Design</span>
-            <span class="skill-pill">💻 Dashboard Design</span>
-            <span class="skill-pill">🗂 Design Systems</span>
-            <span class="skill-pill">🧪 Prototyping & Testing</span>
-          </div>
-        </div>
-        <div class="skill-category fade-up">
-          <div class="skill-cat-label">Tools</div>
-          <div class="skill-pills">
-            <span class="skill-pill">🎭 Figma</span>
-            <span class="skill-pill">📐 Adobe XD</span>
-            <span class="skill-pill">🎬 After Effects</span>
-            <span class="skill-pill">🖼 Photoshop</span>
-            <span class="skill-pill">✍️ Illustrator</span>
-            <span class="skill-pill">🔗 Zeplin</span>
-          </div>
-        </div>
-        <div class="skill-category fade-up">
-          <div class="skill-cat-label">Development</div>
-          <div class="skill-pills">
-            <span class="skill-pill">⚡ HTML5</span>
-            <span class="skill-pill">🎨 CSS3 / Tailwind</span>
-            <span class="skill-pill">📜 JavaScript</span>
-            <span class="skill-pill">⚛️ React (basics)</span>
-            <span class="skill-pill">📲 Responsive Design</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="contact-left fade-up">
-        <div class="section-tag">Get In Touch</div>
-        <h2 class="section-title">Let's Build<br>Something Great</h2>
-        <p class="contact-desc">Have a project in mind? I'm available for freelance work and collaborations. Let's talk.</p>
-        <div class="contact-metrics">
-          <div class="metric-row">
-            <div class="metric-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
-            <div>
-              <div class="metric-val">+25%</div>
-              <div class="metric-lbl">Average Conversion Boost</div>
-            </div>
-          </div>
-          <div class="metric-row">
-            <div class="metric-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
-            </div>
-            <div>
-              <div class="metric-val">5-Star</div>
-              <div class="metric-lbl">Consistent Client Rating</div>
-            </div>
-          </div>
-          <div class="metric-row">
-            <div class="metric-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div>
-              <div class="metric-val">&lt; 48h</div>
-              <div class="metric-lbl">Average Response Time</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="contact-right fade-up">
-        <div class="contact-form">
-          <h3>Send a Message</h3>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Full Name</label>
-              <input type="text" placeholder="John Doe">
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" placeholder="john@example.com">
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Project Type</label>
-            <input type="text" placeholder="e.g. Mobile App, Website, Dashboard…">
-          </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea placeholder="Tell me about your project and timeline…"></textarea>
-          </div>
-          <button class="form-submit" id="sendBtn">Send Message 🚀</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-brand">Adesina <span>Muiz</span></div>
-      <p class="footer-copy">© 2026 Muiz · All rights reserved.</p>
-      <div class="footer-socials">
-        <a href="#" class="social-btn" title="X / Twitter">𝕏</a>
-        <a href="#" class="social-btn" title="LinkedIn">in</a>
-        <a href="#" class="social-btn" title="GitHub">gh</a>
-        <a href="#" class="social-btn" title="Behance">be</a>
-      </div>
-    </footer>
-
+<!-- ═══════════════════════════════════════
+     CASE STUDY — FINTECH
+═══════════════════════════════════════ -->
+<div id="page-cs-fintech" class="page cs-page" role="main" aria-label="Fintech App case study">
+  <div class="cs-back-bar">
+    <button class="cs-back" onclick="goTo('projects')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>Back to Projects
+    </button>
+    <span class="cs-back-sep" aria-hidden="true">/</span>
+    <span class="cs-back-title">Fintech App UI</span>
   </div>
+  <div class="cs-hero">
+    <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=1400&h=600&fit=crop&auto=format&q=80" alt="Fintech App UI hero" loading="eager" width="1400" height="600">
+    <div class="cs-hero-overlay" aria-hidden="true"></div>
+    <div class="cs-hero-label">
+      <div class="cs-hero-cat">Mobile App · Fintech</div>
+      <h1 class="cs-hero-title">Fintech App UI</h1>
+    </div>
+  </div>
+  <div class="cs-body">
+    <div class="cs-stats" role="list" aria-label="Project outcomes">
+      <div class="cs-stat" role="listitem"><div class="cs-stat-val">↑ 34%</div><div class="cs-stat-lbl">Session Duration</div></div>
+      <div class="cs-stat" role="listitem"><div class="cs-stat-val">4.9★</div><div class="cs-stat-lbl">App Store Rating</div></div>
+      <div class="cs-stat" role="listitem"><div class="cs-stat-val">89%</div><div class="cs-stat-lbl">Task Completion</div></div>
+      <div class="cs-stat" role="listitem"><div class="cs-stat-val">12 wks</div><div class="cs-stat-lbl">Delivery Time</div></div>
+    </div>
+    <div class="cs-sec"><div class="cs-sec-title">Overview</div><p>A crypto trading and portfolio management app designed for both novice investors and power traders. The primary challenge was presenting real-time, volatile financial data in a way that is readable and immediately actionable — without overwhelming users with information density.</p></div>
+    <div class="cs-hr"></div>
+    <div class="cs-sec"><div class="cs-sec-title">Problem</div><p>The existing app had a cluttered interface with no clear information hierarchy, causing users to abandon transactions mid-flow. Task completion sat at 61% — well below the industry benchmark of 78%. User interviews revealed confusion around portfolio performance metrics and a fear of making errors during trades.</p></div>
+    <div class="cs-sec"><div class="cs-sec-title">Solution</div><p>Redesigned the information architecture from scratch, introduced a modular card system for portfolio data, and reduced the transaction flow from 7 steps to 3. A comprehensive dark-mode design system was built to reduce eye strain during extended trading sessions. After launch, task completion improved from 61% to 89% and session duration rose 34%.</p></div>
+    <div class="cs-imgs">
+      <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=640&h=380&fit=crop&auto=format&q=75" alt="Fintech app trading screen" loading="lazy" width="640" height="380">
+      <img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?w=640&h=380&fit=crop&auto=format&q=75" alt="Fintech app portfolio screen" loading="lazy" width="640" height="380">
+    </div>
+    <div class="cs-hr"></div>
+    <div class="cs-sec"><div class="cs-sec-title">Stack &amp; Tools</div><div class="cs-tags"><span class="cs-tag">Figma</span><span class="cs-tag">Dark Mode System</span><span class="cs-tag">iOS &amp; Android</span><span class="cs-tag">Micro-animations</span><span class="cs-tag">Usability Testing</span><span class="cs-tag">Maze</span></div></div>
+    <div class="cs-actions">
+      <a class="btn-primary" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">View on Behance ↗</a>
+      <button class="btn-outline" onclick="goTo('contact')">Start a Similar Project</button>
+    </div>
+  </div>
+  <footer class="site-footer" role="contentinfo">
+    <button class="footer-brand" onclick="goTo('home')">Adesina <span class="accent">Muiz</span></button>
+    <p class="footer-copy">© 2026 Adesina Muiz · All rights reserved.</p>
+    <nav class="footer-socials" aria-label="Social media">
+      <a href="https://x.com/adesina_muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="X/Twitter"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632 5.904-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.linkedin.com/in/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="https://github.com/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+      <a href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="Behance"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.17 11.7c.57-.33.99-.75 1.27-1.25.28-.51.42-1.07.42-1.68 0-.6-.13-1.14-.38-1.62-.26-.48-.6-.87-1.04-1.17-.44-.3-.93-.52-1.49-.67A6.8 6.8 0 0 0 6.2 5H1v14h5.54c.6 0 1.18-.07 1.74-.2.56-.14 1.07-.37 1.52-.69.45-.32.81-.74 1.08-1.27.27-.52.4-1.14.4-1.85 0-.84-.2-1.56-.62-2.14-.41-.59-.99-1-1.49-1.15zm-5.3-4.34h2.3c.26 0 .51.03.74.08.23.06.44.15.61.28.18.14.32.31.42.52.1.21.15.46.15.74 0 .54-.16.95-.47 1.23-.32.28-.73.42-1.23.42H3.87V7.36zm3.92 8.02c-.12.23-.28.42-.49.57-.21.15-.44.26-.71.33-.27.07-.55.1-.84.1H3.87v-3.82h2.05c.32 0 .62.04.9.12.28.08.52.2.73.37.21.17.37.38.49.64.12.26.18.56.18.9 0 .34-.07.65-.2.88l.01.01zm5.36-2.14c.18-.41.47-.75.85-1.02.38-.27.82-.45 1.31-.54.49-.1.99-.15 1.5-.15.46 0 .93.03 1.4.1.47.07.9.21 1.28.41V9.3c0-.44-.07-.83-.21-1.16-.14-.33-.35-.6-.63-.83-.28-.22-.63-.39-1.04-.5-.41-.11-.89-.17-1.44-.17-.67 0-1.3.13-1.88.38-.57.25-1.07.67-1.48 1.24l1.63.98c.18-.33.43-.58.74-.75.32-.17.66-.25 1.03-.25.45 0 .81.1 1.09.31.28.21.42.54.42.99v.17c-.28-.08-.6-.15-.94-.21-.35-.05-.71-.08-1.08-.08-.56 0-1.08.06-1.56.19-.48.13-.9.32-1.25.59-.35.26-.62.6-.82 1-.2.4-.3.87-.3 1.4 0 .5.09.95.27 1.33.18.38.43.7.74.95.32.25.68.44 1.1.57.41.12.86.19 1.34.19.55 0 1.05-.12 1.5-.37.45-.25.81-.6 1.08-1.07h.04v1.26h1.92V13.8c0-.63-.1-1.19-.3-1.68l.03.12zm1.07 4.14c-.19-.1-.34-.23-.45-.4-.11-.17-.16-.37-.16-.61 0-.27.06-.5.18-.68.12-.18.28-.33.47-.44.2-.11.42-.19.67-.24.25-.04.5-.07.75-.07.22 0 .46.02.7.07.24.04.47.1.68.18v.3c0 .38-.07.7-.21.98-.14.28-.32.51-.55.69-.23.18-.48.31-.77.39-.28.08-.57.12-.85.12-.2 0-.39-.03-.56-.1l.1.01zM14.24 6.4h4.48v1.17h-4.48V6.4z"/></svg></a>
+    </nav>
+  </footer>
 </div>
 
+<!-- ═══ CASE STUDY — E-COMMERCE ═══ -->
+<div id="page-cs-ecommerce" class="page cs-page" role="main" aria-label="E-commerce App case study">
+  <div class="cs-back-bar">
+    <button class="cs-back" onclick="goTo('projects')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>Back to Projects</button>
+    <span class="cs-back-sep" aria-hidden="true">/</span><span class="cs-back-title">E-commerce App UI</span>
+  </div>
+  <div class="cs-hero">
+    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&h=600&fit=crop&auto=format&q=80" alt="E-commerce App UI hero" loading="eager" width="1400" height="600">
+    <div class="cs-hero-overlay" aria-hidden="true"></div>
+    <div class="cs-hero-label"><div class="cs-hero-cat">Mobile App · E-commerce</div><h1 class="cs-hero-title">E-commerce App UI</h1></div>
+  </div>
+  <div class="cs-body">
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="cs-stat-val">↑ 28%</div><div class="cs-stat-lbl">Checkout Conversion</div></div>
+      <div class="cs-stat"><div class="cs-stat-val">−40%</div><div class="cs-stat-lbl">Cart Abandonment</div></div>
+      <div class="cs-stat"><div class="cs-stat-val">4.8★</div><div class="cs-stat-lbl">Store Rating</div></div>
+      <div class="cs-stat"><div class="cs-stat-val">8 wks</div><div class="cs-stat-lbl">Delivery Time</div></div>
+    </div>
+    <div class="cs-sec"><div class="cs-sec-title">Overview</div><p>A fashion e-commerce app targeting millennial shoppers who expect a premium, frictionless mobile experience comparable to Zara or ASOS. The client needed to close the gap between browsing and buying.</p></div>
+    <div class="cs-hr"></div>
+    <div class="cs-sec"><div class="cs-sec-title">Problem</div><p>Cart abandonment sat at 72%, driven by a complex multi-page checkout and poor product discovery. Mobile-first users were dropping off at the payment screen due to excessive form fields and no guest checkout option. Product filter UX was also confusing, leading to low engagement with the full catalogue.</p></div>
+    <div class="cs-sec"><div class="cs-sec-title">Solution</div><p>Introduced a single-screen checkout with Apple Pay/Google Pay integration, rebuilt product filters with live preview, and added a wishlist-to-cart gesture shortcut. Abandonment dropped from 72% to 43% (a 40% reduction) while checkout conversion rose 28%.</p></div>
+    <div class="cs-imgs">
+      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=640&h=380&fit=crop&auto=format&q=75" alt="E-commerce checkout screen" loading="lazy" width="640" height="380">
+      <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=640&h=380&fit=crop&auto=format&q=75" alt="E-commerce product browse screen" loading="lazy" width="640" height="380">
+    </div>
+    <div class="cs-hr"></div>
+    <div class="cs-sec"><div class="cs-sec-title">Stack &amp; Tools</div><div class="cs-tags"><span class="cs-tag">Figma</span><span class="cs-tag">Prototyping</span><span class="cs-tag">iOS Native Patterns</span><span class="cs-tag">A/B Testing</span><span class="cs-tag">Design System</span></div></div>
+    <div class="cs-actions">
+      <a class="btn-primary" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">View on Behance ↗</a>
+      <button class="btn-outline" onclick="goTo('contact')">Start a Similar Project</button>
+    </div>
+  </div>
+  <footer class="site-footer"><button class="footer-brand" onclick="goTo('home')">Adesina <span class="accent">Muiz</span></button><p class="footer-copy">© 2026 Adesina Muiz</p><nav class="footer-socials" aria-label="Social media"><a href="https://x.com/adesina_muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="X/Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632 5.904-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://www.linkedin.com/in/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H8v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="Behance">Be</a></nav></footer>
+</div>
+
+<!-- ═══ CASE STUDY — SAAS ═══ -->
+<div id="page-cs-saas" class="page cs-page" role="main" aria-label="AI SaaS case study">
+  <div class="cs-back-bar">
+    <button class="cs-back" onclick="goTo('projects')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>Back to Projects</button>
+    <span class="cs-back-sep" aria-hidden="true">/</span><span class="cs-back-title">AI SaaS Landing Page</span>
+  </div>
+  <div class="cs-hero">
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&h=600&fit=crop&auto=format&q=80" alt="AI SaaS Landing Page hero" loading="eager" width="1400" height="600">
+    <div class="cs-hero-overlay" aria-hidden="true"></div>
+    <div class="cs-hero-label"><div class="cs-hero-cat">Web · SaaS</div><h1 class="cs-hero-title">AI SaaS Landing Page</h1></div>
+  </div>
+  <div class="cs-body">
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="cs-stat-val">↑ 78%</div><div class="cs-stat-lbl">Trial Sign-ups</div></div>
+      <div class="cs-stat"><div class="cs-stat-val">4.1%</div><div class="cs-stat-lbl">Conversion Rate</div></div>
+      <div class="cs-stat"><div class="cs-stat-val">2.3s</div><div class="cs-stat-lbl">Time to First CTA</div></div>
+      <div class="cs-stat"><div class="cs-stat-val">6 wks</div><div class="cs-stat-lbl">Delivery Time</div></div>
+    </div>
+    <div class="cs-sec"><div class="cs-sec-title">Overview</div><p>High-converting landing page for an AI productivity SaaS targeting knowledge workers. The brief required communicating complex AI capabilities quickly to a sceptical, technically literate audience who had seen many similar tools.</p></div>
+    <div class="cs-hr"></div>
+    <div class="cs-sec"><div class="cs-sec-title">Problem</div><p>The previous landing page had a 2.3% trial conversion rate. Messaging was too technical, CTAs were buried below the fold, and the page lacked social proof in the first viewport — causing most users to bounce within 10 seconds of arrival.</p></div>
+    <div class="cs-sec"><div class="cs-sec-title">Solution</div><p>Rebuilt around a benefit-first narrative. Moved social proof and outcome metrics into the hero. Introduced a single clear above-the-fold CTA and scroll-triggered animations that guide users through the value proposition step by step. Trial conversion improved from 2.3% to 4.1% — a 78% uplift.</p></div>
+    <div class="cs-imgs">
+      <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=640&h=380&fit=crop&auto=format&q=75" alt="SaaS landing page hero section" loading="lazy" width="640" height="380">
+      <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=640&h=380&fit=crop&auto=format&q=75" alt="SaaS landing page features section" loading="lazy" width="640" height="380">
+    </div>
+    <div class="cs-hr"></div>
+    <div class="cs-sec"><div class="cs-sec-title">Stack &amp; Tools</div><div class="cs-tags"><span class="cs-tag">Figma</span><span class="cs-tag">HTML/CSS</span><span class="cs-tag">JavaScript</span><span class="cs-tag">CRO</span><span class="cs-tag">Motion Design</span></div></div>
+    <div class="cs-actions">
+      <a class="btn-primary" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">View on Behance ↗</a>
+      <button class="btn-outline" onclick="goTo('contact')">Start a Similar Project</button>
+    </div>
+  </div>
+  <footer class="site-footer"><button class="footer-brand" onclick="goTo('home')">Adesina <span class="accent">Muiz</span></button><p class="footer-copy">© 2026 Adesina Muiz</p><nav class="footer-socials" aria-label="Social media"><a href="https://x.com/adesina_muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="X/Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632 5.904-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://www.linkedin.com/in/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H8v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="Behance">Be</a></nav></footer>
+</div>
+
+<!-- ═══ CASE STUDY — CRYPTO DASHBOARD ═══ -->
+<div id="page-cs-crypto" class="page cs-page" role="main" aria-label="Crypto Dashboard case study">
+  <div class="cs-back-bar">
+    <button class="cs-back" onclick="goTo('projects')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>Back to Projects</button>
+    <span class="cs-back-sep" aria-hidden="true">/</span><span class="cs-back-title">Crypto Dashboard UI</span>
+  </div>
+  <div class="cs-hero">
+    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&h=600&fit=crop&auto=format&q=80" alt="Crypto Dashboard UI hero" loading="eager" width="1400" height="600">
+    <div class="cs-hero-overlay" aria-hidden="true"></div>
+    <div class="cs-hero-label"><div class="cs-hero-cat">Dashboard · Crypto</div><h1 class="cs-hero-title">Crypto Dashboard UI</h1></div>
+  </div>
+  <div class="cs-body">
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="cs-stat-val">↑ 41%</div><div class="cs-stat-lbl">Daily Active Users</div></div>
+      <div class="cs-stat"><div class="cs-stat-val">−37%</div><div class="cs-stat-lbl">48h Churn</div></div>
+      <div class="cs-stat"><div class="cs-stat-val">−30%</div><div class="cs-stat-lbl">Support Tickets</div></div>
+      <div class="cs-stat"><div class="cs-stat-val">10 wks</div><div class="cs-stat-lbl">Delivery Time</div></div>
+    </div>
+    <div class="cs-sec"><div class="cs-sec-title">Overview</div><p>A professional trading dashboard for a crypto exchange handling $2M+ in daily volume. Target users were experienced traders who needed high information density without sacrificing readability under the pressure of live markets.</p></div>
+    <div class="cs-hr"></div>
+    <div class="cs-sec"><div class="cs-sec-title">Problem</div><p>The old dashboard displayed 14 panels by default with no customisation options. New users churned within 48 hours due to cognitive overload, while power users were frustrated by inability to rearrange their workspace. Support tickets were high due to poor onboarding UX.</p></div>
+    <div class="cs-sec"><div class="cs-sec-title">Solution</div><p>Designed a modular drag-and-drop panel system with sensible defaults for beginner vs. advanced user modes. Introduced a dark-mode-first design system with colour-coded data states (green/red/amber) and a persistent watchlist. 48h churn dropped 37%, daily active users grew 41%, and support tickets fell 30%.</p></div>
+    <div class="cs-imgs">
+      <img src="https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=640&h=380&fit=crop&auto=format&q=75" alt="Crypto dashboard overview" loading="lazy" width="640" height="380">
+      <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=640&h=380&fit=crop&auto=format&q=75" alt="Crypto dashboard trading panel" loading="lazy" width="640" height="380">
+    </div>
+    <div class="cs-hr"></div>
+    <div class="cs-sec"><div class="cs-sec-title">Stack &amp; Tools</div><div class="cs-tags"><span class="cs-tag">Figma</span><span class="cs-tag">Design System</span><span class="cs-tag">Dark Mode</span><span class="cs-tag">Data Visualisation</span><span class="cs-tag">User Research</span></div></div>
+    <div class="cs-actions">
+      <a class="btn-primary" href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer">View on Behance ↗</a>
+      <button class="btn-outline" onclick="goTo('contact')">Start a Similar Project</button>
+    </div>
+  </div>
+  <footer class="site-footer"><button class="footer-brand" onclick="goTo('home')">Adesina <span class="accent">Muiz</span></button><p class="footer-copy">© 2026 Adesina Muiz</p><nav class="footer-socials" aria-label="Social media"><a href="https://x.com/adesina_muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="X/Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632 5.904-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://www.linkedin.com/in/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H8v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a href="https://www.behance.net/adesina-muiz" target="_blank" rel="noopener noreferrer" class="soc" aria-label="Behance">Be</a></nav></footer>
+</div>
+
+</div><!-- /.main -->
+</div><!-- /.shell -->
+
 <script>
-/* ===== CASE STUDY DATA ===== */
-const projects = {
-  fintech: {
-    cat: 'Mobile App · Fintech',
-    title: 'Fintech App UI',
-    img: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=760&h=360&fit=crop',
-    stats: [{num:'↑ 34%',label:'Session Duration'},{num:'4.9★',label:'App Store Rating'},{num:'12 wks',label:'Delivery Time'}],
-    overview: 'A crypto trading and portfolio management app designed for both novice investors and power traders. The challenge was presenting real-time volatile data in a way that is readable and actionable at a glance.',
-    problem: 'The existing app had a cluttered interface with no clear information hierarchy, causing users to abandon transactions mid-flow. Task completion rate sat at 61%.',
-    solution: 'Redesigned the information architecture from scratch, introduced a modular card system for portfolio data, and created a simplified transaction flow reduced to 3 steps. Task completion improved to 89%.',
-    tags: ['Figma','Dark Mode System','iOS & Android','Micro-animations','Usability Testing'],
-    liveUrl: '#'
-  },
-  ecommerce: {
-    cat: 'Mobile App · E-commerce',
-    title: 'E-commerce App UI',
-    img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=760&h=360&fit=crop',
-    stats: [{num:'↑ 28%',label:'Checkout Conversion'},{num:'−40%',label:'Cart Abandonment'},{num:'8 wks',label:'Delivery Time'}],
-    overview: 'A fashion e-commerce app targeting millennial shoppers who expect a premium, frictionless mobile shopping experience comparable to Zara or ASOS.',
-    problem: 'High cart abandonment (72%) driven by a complex, multi-page checkout and poor product discovery. Mobile-first users were dropping off at the payment screen.',
-    solution: 'Introduced a single-screen checkout with Apple Pay/Google Pay integration, rebuilt product filters with live preview, and added a wishlist-to-cart gesture shortcut. Abandonment dropped to 43%.',
-    tags: ['Figma','Prototyping','iOS Native Patterns','A/B Testing','Design System'],
-    liveUrl: '#'
-  },
-  saas: {
-    cat: 'Web · SaaS',
-    title: 'AI SaaS Landing Page',
-    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=760&h=360&fit=crop',
-    stats: [{num:'↑ 25%',label:'Trial Sign-ups'},{num:'2.1s',label:'Avg. Scroll Depth'},{num:'6 wks',label:'Delivery Time'}],
-    overview: 'High-converting landing page for an AI productivity SaaS targeting knowledge workers. Needed to communicate complex AI capabilities quickly to a sceptical, technically literate audience.',
-    problem: 'Previous landing page had a 2.3% trial conversion rate. Messaging was too technical, CTAs were buried, and the page lacked social proof above the fold.',
-    solution: 'Rebuilt the page around a benefit-first narrative, moved social proof and key metrics into the hero, and simplified the CTA to a single action. Trial conversion reached 4.1%.',
-    tags: ['Figma','HTML/CSS','JavaScript','CRO','Motion Design'],
-    liveUrl: '#'
-  },
-  crypto: {
-    cat: 'Dashboard · Crypto',
-    title: 'Crypto Dashboard UI',
-    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=760&h=360&fit=crop',
-    stats: [{num:'↑ 41%',label:'Daily Active Users'},{num:'−30%',label:'Support Tickets'},{num:'10 wks',label:'Delivery Time'}],
-    overview: 'A professional trading dashboard for a crypto exchange handling $2M+ in daily volume. Target users were experienced traders who needed speed and density without sacrificing readability.',
-    problem: 'The old dashboard was overwhelming—14 panels visible by default with no customisation. New users churned within 48 hours due to cognitive overload.',
-    solution: 'Designed a modular, drag-and-drop panel system with sensible defaults for new vs. advanced users. Introduced a dark-mode-first design system with colour-coded data states. Churn at 48h dropped 37%.',
-    tags: ['Figma','Design System','Dark Mode','Data Visualisation','User Research'],
-    liveUrl: '#'
-  }
-};
+/* ══════════════════════════════
+   NAVIGATION
+══════════════════════════════ */
+const ALL_SECTIONS = ['home','about','services','projects','testimonials','skills','contact'];
+const NAV_IDS      = ['home','projects','about','services','skills','contact'];
 
-function openModal(key) {
-  const p = projects[key];
-  if (!p) return;
-  document.getElementById('modalImg').src = p.img;
-  document.getElementById('modalImg').alt = p.title;
-  document.getElementById('modalCat').textContent = p.cat;
-  document.getElementById('modalTitle').textContent = p.title;
-  document.getElementById('modalOverview').textContent = p.overview;
-  document.getElementById('modalProblem').textContent = p.problem;
-  document.getElementById('modalSolution').textContent = p.solution;
-
-  const stats = p.stats.map(s => `<div><div class="modal-stat-num">${s.num}</div><div class="modal-stat-label">${s.label}</div></div>`).join('');
-  document.getElementById('modalStats').innerHTML = stats;
-
-  const tags = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
-  document.getElementById('modalTags').innerHTML = tags;
-
-  document.getElementById('modalFooter').innerHTML =
-    `<a href="${p.liveUrl}" class="btn-primary" style="font-size:13px;padding:11px 22px;">View Live Project ↗</a>
-     <button onclick="closeModal()" class="btn-outline" style="font-size:13px;padding:10px 22px;">Close</button>`;
-
-  document.getElementById('caseModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+function goTo(target) {
+  /* Show main page */
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-main').classList.add('active');
+  /* Set active nav */
+  setActive(target);
+  /* Scroll */
+  requestAnimationFrame(() => {
+    const el = document.getElementById('sec-' + target);
+    if (el) el.scrollIntoView({behavior:'smooth'});
+    else window.scrollTo({top:0,behavior:'smooth'});
+  });
+  /* Close mobile menu */
+  const nav = document.getElementById('navLinks');
+  nav.classList.remove('open');
+  document.getElementById('menuToggle').setAttribute('aria-expanded','false');
 }
 
-function closeModal() {
-  document.getElementById('caseModal').classList.remove('open');
-  document.body.style.overflow = '';
+function openCS(key) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = document.getElementById('page-cs-' + key);
+  if (page) { page.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
 }
 
-document.getElementById('modalClose').addEventListener('click', closeModal);
-document.getElementById('caseModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+function setActive(id) {
+  NAV_IDS.forEach(s => {
+    const nl = document.getElementById('nl-' + s);
+    const sl = document.getElementById('sl-' + s);
+    const active = s === id;
+    if (nl) nl.classList.toggle('active', active);
+    if (sl) sl.classList.toggle('active', active);
+  });
+}
 
-/* ===== MOBILE MENU ===== */
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-document.querySelectorAll('.topnav-links a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-/* ===== ACTIVE LINK ===== */
-const sections = document.querySelectorAll('section[id]');
-const navItems = document.querySelectorAll('.topnav-links a');
-const sideItems = document.querySelectorAll('.sidebar-link');
+/* Scroll spy */
 window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) current = sec.getAttribute('id'); });
-  navItems.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + current) a.classList.add('active'); });
-  sideItems.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + current) a.classList.add('active'); });
+  if (!document.getElementById('page-main').classList.contains('active')) return;
+  let cur = 'home';
+  ALL_SECTIONS.forEach(id => {
+    const el = document.getElementById('sec-' + id);
+    if (el && window.scrollY + 130 >= el.offsetTop) cur = id;
+  });
+  setActive(cur);
+}, {passive:true});
+
+/* ══════════════════════════════
+   MOBILE MENU
+══════════════════════════════ */
+const menuBtn = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', open);
+  menuBtn.textContent = open ? '✕' : '☰';
 });
 
-/* ===== SCROLL ANIMATION ===== */
+/* ══════════════════════════════
+   FORMSPREE — AJAX
+══════════════════════════════ */
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn     = document.getElementById('formBtn');
+  const btnTxt  = document.getElementById('formBtnText');
+  const btnIcon = document.getElementById('formBtnIcon');
+  const msg     = document.getElementById('formMsg');
+
+  /* Loading state */
+  btn.disabled = true;
+  btnTxt.textContent = 'Sending…';
+  btnIcon.textContent = '⏳';
+  msg.className = 'form-msg';
+  msg.textContent = '';
+
+  try {
+    const res = await fetch('https://formspree.io/f/mbdpvobw', {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      /* Success */
+      this.style.display = 'none';
+      msg.className = 'form-msg success';
+      msg.innerHTML = '✅ <strong>Message sent!</strong> I\'ll get back to you within 48 hours. Looking forward to working with you!';
+    } else {
+      const data = await res.json().catch(() => ({}));
+      const errText = data.errors ? data.errors.map(er => er.message).join(' · ') : 'Something went wrong. Please try again.';
+      msg.className = 'form-msg error';
+      msg.innerHTML = '❌ ' + errText;
+      btn.disabled = false;
+      btnTxt.textContent = 'Send Message';
+      btnIcon.textContent = '🚀';
+    }
+  } catch (err) {
+    msg.className = 'form-msg error';
+    msg.innerHTML = '❌ Network error — please check your connection and try again.';
+    btn.disabled = false;
+    btnTxt.textContent = 'Send Message';
+    btnIcon.textContent = '🚀';
+  }
+});
+
+/* ══════════════════════════════
+   SCROLL ANIMATIONS
+══════════════════════════════ */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
-    if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 75);
+      observer.unobserve(entry.target);
+    }
   });
-}, { threshold: 0.1 });
+}, {threshold: 0.08, rootMargin: '0px 0px -40px 0px'});
+
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-/* ===== CONTACT FORM ===== */
-document.getElementById('sendBtn').addEventListener('click', () => {
-  alert("Message sent! I'll get back to you within 48 hours 🙌");
-});
-
-/* ===== SMOOTH SCROLL ===== */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-  });
-});
 </script>
 </body>
 </html>
